@@ -111,22 +111,23 @@ class Atencion_model extends CI_model {
     }
 
     // LINEA DE TIEMPO 
-    public function CrearLineaTiempoAtencion($documento, $especialidad) {
+    public function CrearLineaTiempoAtencion($documento, $especialidad,$doctor_ide) {
         $datos = [
             "dni_paciente" => $documento,
             "tp_atencion" => $especialidad,
             "fecha" => date("d-m-Y"),
             "hora" => date("h:i A"),
-            "usuario" => $this->session->userdata("nombre")
+            "usuario" => $this->session->userdata("nombre"),
+            "id__doctor" => $doctor_ide
         ];
         $this->db->insert("linea_tiempo", $datos);
     }
 
-    public function CrearLineaTiempoLaboratorio($documento,$procedimiento,$doctor_ide) {
+    public function CrearLineaTiempoLaboratorio($documento,$especialidad,$doctor_ide) {
 
         $datos = [
             "dni_paciente" => $documento,
-            "tp_atencion" => $procedimiento,
+            "tp_atencion" => $especialidad,
             "fecha" => date("d-m-Y"),
             "hora" => date("h:i A"),
             "usuario" => $this->session->userdata("nombre"),

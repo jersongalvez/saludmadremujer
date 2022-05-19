@@ -17,7 +17,7 @@ class Colposcopia_model extends CI_model {
             "papanicolaou" => $data["papanicolaou"],
             "conclusiones" => $data["conclusiones"],
             "usuario" => $this->session->userdata("nombre"),
-            "cmp" => $this->session->userdata("cmp")
+            "cpm" => $this->session->userdata("cpm")
         ];
         $this->db->insert("colposcopias", $datos);
         $id = $this->db->insert_id();

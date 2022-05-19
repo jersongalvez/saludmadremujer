@@ -16,10 +16,10 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">administración</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">pacientes</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Administración</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Pacientes</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">pacientes</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Pacientes</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -397,7 +397,7 @@
   <script src="<?php echo base_url(); ?>public/js/scripts/pacientes.js"></script>
   <script>
     function actualizarPaciente(id) {
-        var url5 = baseurl  + "administracion/pacienteid",
+        var url5 = baseurl  + "administracion/pacienteidaaaa",
             dni = $("#dni2"),
             nombre = $("#nombre2"),
             apellido = $("#apellido2"),
@@ -443,8 +443,71 @@
               }
           });
       }
-    
   </script>
-  
+
+  <script>
+    var departamento = <?php echo json_encode($departamento->result()); ?>;
+    var provincia = <?php echo json_encode($provincia->result()); ?>;
+    var distrito = <?php echo json_encode($distrito->result()); ?>;
+
+      $("#departamento").change(function(){
+        var id_departamento = ($('#departamento').find(":selected").val()).slice(0,2);
+        $("#provincia").html("");
+        $("#distrito").html("");
+        
+        $("#provincia").append('<option value="" >Seleccione la Provincia</option>');
+        $("#distrito").append('<option value="" >Seleccione el Distrito</option>');
+        for (var i = 0; i < provincia.length; i++) {
+          if((provincia[i]['id']).slice(0,2) == id_departamento){
+            $("#provincia").append('<option value="'+provincia[i]['id']+'" >'+provincia[i]['name']+'</option>');
+          }
+        }
+        for (var i = 0; i < distrito.length; i++) {
+          if((distrito[i]['id']).slice(0,2) == id_departamento){
+            $("#distrito").append('<option value="'+distrito[i]['id']+'" >'+distrito[i]['name']+'</option>');
+          }
+        }
+
+        $('#provincia  option[value=""]').attr('selected','selected');
+        $('#distrito  option[value=""]').attr('selected','selected');
+      });
+
+      $("#provincia").change(function(){
+        var id_provincia = ($('#provincia').find(":selected").val()).slice(0,2);
+        $('#departamento  option[value="'+id_provincia+'"]').attr('selected','selected');
+
+        $("#distrito").html("");
+        $("#distrito").append('<option value="" selected>Seleccione el Distrito</option>');
+        for (var i = 0; i < distrito.length; i++) {
+          if((distrito[i]['id']).slice(0,2) == id_provincia){
+            $("#distrito").append('<option value="'+distrito[i]['id']+'" >'+distrito[i]['name']+'</option>');
+          }
+        }
+        $('#distrito  option[value=""]').attr('selected','selected');
+
+      });
+
+      $("#distrito").change(function(){
+        var id_distrito = ($('#distrito').find(":selected").val()).slice(0,2);
+        $('#departamento  option[value="'+id_distrito+'"]').attr('selected','selected');
+
+        $("#provincia").html("");
+        $("#provincia").append('<option value="">Seleccione la Provincia</option>');
+        for (var i = 0; i < provincia.length; i++) {
+          if((provincia[i]['id']).slice(0,2) == id_distrito){
+            $("#provincia").append('<option value="'+provincia[i]['id']+'" >'+provincia[i]['name']+'</option>');
+          }
+        }
+        
+        var id_distrito = ($('#distrito').find(":selected").val()).slice(0,4);
+        for (var i = 0; i < provincia.length; i++) {
+          if((provincia[i]['id']).slice(0,4) == id_distrito){
+            $('#provincia  option[value="'+id_distrito+'"]').attr('selected','selected');
+            i = provincia.length;
+          }
+        }
+      });
+
+  </script>
 </body>
 </html>

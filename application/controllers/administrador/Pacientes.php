@@ -80,6 +80,7 @@ class Pacientes extends Admin_Controller {
 	}
 
 	public function actualizarPaciente() {
+		$dni = $this->input->post("dni");
 		$id = $this->input->post("id");
 		$celular = $this->input->post("celular");
 		$direccion = $this->input->post("direccion");
@@ -96,6 +97,7 @@ class Pacientes extends Admin_Controller {
 		$fecha_nacimiento = $this->input->post("fecha_nacimiento");
 
 		$data = [
+			"dni" => $dni,
 			"celular" => $celular,
 			"direccion" => $direccion,
 			"departamento" => $departamento,

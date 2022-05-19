@@ -112,7 +112,6 @@ class Inventarios extends Admin_Controller {
 
     public function getConsultaInventario($stock) {
         $result = $this->Inventarios_model->getConsultaInventario($stock);
-
         echo json_encode($result->result());
     }
 

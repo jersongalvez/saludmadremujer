@@ -83,7 +83,7 @@ class Atencion extends Admin_Controller {
 		];
 		 $this->Atencion_model->registrarAtencion($data);
 		 $this->Pagos_model->CrearPagos($factura);
-		 $this->Atencion_model->CrearLineaTiempoAtencion($dni, $especialidad);
+		 $this->Atencion_model->CrearLineaTiempoAtencion($dni, $especialidad,$doctor);
 
 	}
 

@@ -261,13 +261,22 @@
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Procedimiento:</p>
-                            <h6 class="text-sm mb-0"><?php echo $linea_->tp_atencion; ?></h6>
+                            <p class="text-xs font-weight-bold mb-0">Servicio:</p>
+                            <h6 class="text-sm mb-0">
+                              <?php 
+                                if($linea_->tp_atencion == ""){?>
+                                  <?php echo "Laboratorio"; ?>
+                                <?php } else { ?>
+                                  <?php echo $linea_->tp_atencion; ?>
+                                <?php
+                                }
+                              ?>
+                            </h6>
                           </div>
                         </td>
                         <td>
                           <div class="text-center">
-                            <p class="text-xs font-weight-bold mb-0">Procedimiento:</p>
+                            <p class="text-xs font-weight-bold mb-0">Médico:</p>
                             <h6 class="text-sm mb-0"><?php echo $linea_->doctor; ?></h6>
                           </div>
                         </td>

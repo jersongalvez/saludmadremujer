@@ -240,8 +240,8 @@
             fecha_nacimiento = $("#fecha_nacimiento2"),
             direccion = $("#direccion2"),
             departamento = $("#departamento2"),
-            provincia = $("#provincia2"),
-            distrito = $("#distrito2"),
+            provincia = $("#provincia22"),
+            distrito = $("#distrito22"),
             ocupacion = $("#ocupacion2"),
             academico = $("#grado_academico2"),
             estado_civil = $("#estado_civil2"),
@@ -279,14 +279,15 @@
 
     var url4 = "<?php echo base_url(); ?>administracion/actualizarpacientes",
     id = $("#id2").val(),
+    dni = $("#dni2").val(),
     celular = $("#celular2").val(),
     sexo = $("#sexo2").val(),
     edad = $("#edad2").val(),
     direccion = $("#direccion2").val(),
     fecha_nacimiento = $("#fecha_nacimiento2").val(),
     departamento = $("#departamento2").val(),
-    provincia = $("#provincia2").val(),
-    distrito = $("#distrito2").val(),
+    provincia = $("#provincia22").val(),
+    distrito = $("#distrito22").val(),
     ocupacion = $("#ocupacion2").val(),
     grado_academico = $("#grado_academico2").val(),
     estado_civil = $("#estado_civil2").val(),
@@ -294,31 +295,41 @@
     fresponsable = $("#fresponsable2").val();
 
     $.ajax({
-       url: url4,
-       method: "POST",
-       data: { 
-           id: id,
-           celular: celular, 
-           direccion: direccion,
-           fecha_nacimiento: fecha_nacimiento,
-           departamento: departamento,
-           edad: edad,
-           sexo: sexo,
-           provincia: provincia,
-           distrito: distrito,
-           ocupacion: ocupacion,
-           grado_academico: grado_academico,
-           estado_civil: estado_civil,
-           documento: documento,
-           fresponsable: fresponsable
-       },
-       success: function() {
-        $("body").overhang({
-                        type: "success",
-                        message: "Paciente actualizado correctamente"
-                    });
-                    setTimeout(reloadPage, 3000);
-       }
+      url: url4,
+      method: "POST",
+      data: { 
+        id: id,
+        dni: dni, 
+        celular: celular, 
+        direccion: direccion,
+        fecha_nacimiento: fecha_nacimiento,
+        departamento: departamento,
+        edad: edad,
+        sexo: sexo,
+        provincia: provincia,
+        distrito: distrito,
+        ocupacion: ocupacion,
+        grado_academico: grado_academico,
+        estado_civil: estado_civil,
+        documento: documento,
+        fresponsable: fresponsable
+      },
+      success: function(json) {// json parametro de respuesta para validar la respuesta
+        json =  JSON.parse(json);
+
+        if(json.success == 1){//Paciente Actualizado Correctamente,
+          $("body").overhang({
+            type: "success",
+            message: json.message
+          });
+			    setTimeout(reloadPage, 3000);
+        }else{//Ya existe un paciente con este NRO DOC - WARNING
+          $("body").overhang({
+            type: "warn",
+            message: json.message
+          });
+        }
+      }
     });
 });
 const reloadPage = () => {
@@ -326,5 +337,71 @@ const reloadPage = () => {
          }
         });
     </script>
+
+    
+  <script>
+    var departamento = <?php echo json_encode($departamento->result()); ?>;
+    var provincia = <?php echo json_encode($provincia->result()); ?>;
+    var distrito = <?php echo json_encode($distrito->result()); ?>;
+
+      $("#departamento2").change(function(){
+        var id_departamento = ($('#departamento2').find(":selected").val()).slice(0,2);
+        $("#provincia2").html("");
+        $("#distrito2").html("");
+        
+        $("#provincia2").append('<option value="" >Seleccione la Provincia</option>');
+        $("#distrito2").append('<option value="" >Seleccione el Distrito</option>');
+        for (var i = 0; i < provincia.length; i++) {
+          if((provincia[i]['id']).slice(0,2) == id_departamento){
+            $("#provincia2").append('<option value="'+provincia[i]['id']+'" >'+provincia[i]['name']+'</option>');
+          }
+        }
+        for (var i = 0; i < distrito.length; i++) {
+          if((distrito[i]['id']).slice(0,2) == id_departamento){
+            $("#distrito2").append('<option value="'+distrito[i]['id']+'" >'+distrito[i]['name']+'</option>');
+          }
+        }
+
+        $('#provincia2  option[value=""]').attr('selected','selected');
+        $('#distrito2  option[value=""]').attr('selected','selected');
+      });
+
+      $("#provincia2").change(function(){
+        var id_provincia = ($('#provincia2').find(":selected").val()).slice(0,2);
+        $('#departamento2  option[value="'+id_provincia+'"]').attr('selected','selected');
+
+        $("#distrito2").html("");
+        $("#distrito2").append('<option value="" selected>Seleccione el Distrito</option>');
+        for (var i = 0; i < distrito.length; i++) {
+          if((distrito[i]['id']).slice(0,2) == id_provincia){
+            $("#distrito2").append('<option value="'+distrito[i]['id']+'" >'+distrito[i]['name']+'</option>');
+          }
+        }
+        $('#distrito2  option[value=""]').attr('selected','selected');
+
+      });
+
+      $("#distrito2").change(function(){
+        var id_distrito = ($('#distrito2').find(":selected").val()).slice(0,2);
+        $('#departamento2  option[value="'+id_distrito+'"]').attr('selected','selected');
+
+        $("#provincia2").html("");
+        $("#provincia2").append('<option value="">Seleccione la Provincia</option>');
+        for (var i = 0; i < provincia.length; i++) {
+          if((provincia[i]['id']).slice(0,2) == id_distrito){
+            $("#provincia2").append('<option value="'+provincia[i]['id']+'" >'+provincia[i]['name']+'</option>');
+          }
+        }
+        
+        var id_distrito = ($('#distrito2').find(":selected").val()).slice(0,4);
+        for (var i = 0; i < provincia.length; i++) {
+          if((provincia[i]['id']).slice(0,4) == id_distrito){
+            $('#provincia2  option[value="'+id_distrito+'"]').attr('selected','selected');
+            i = provincia.length;
+          }
+        }
+      });
+
+  </script>
 </body>
 </html>

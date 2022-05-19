@@ -8,8 +8,9 @@ class Historiaclinica extends Admin_Controller {
 		$this->load->model("Pacientes_model");
 		$this->load->model("Historias_model");
 		$this->load->model("Generic_model");
+		$this->load->model("Lineatiempo_model");
 	}
-	
+
 	public function historiasClinicas()
 	{
 		$documento = $this->uri->segment(3);
@@ -21,6 +22,8 @@ class Historiaclinica extends Admin_Controller {
 		$docLaboratorios = $this->Historias_model->getDocumentos($documento, "laboratorio");
 		$docPatologias = $this->Historias_model->getDocumentos($documento, "patologia");
 		$diagnosticos = $this->Historias_model->getDiagnosticos();
+		$lineas = $this->Lineatiempo_model->getLineaClientes_DNI($documento);
+
 		$data = [
 			"paciente" => $pacientes,
 			"historia" => $historias,		
@@ -29,7 +32,8 @@ class Historiaclinica extends Admin_Controller {
 			"documento" => $docFisico,
 			"docLaboratorio" => $docLaboratorios,
 			"docPatologia" => $docPatologias,
-			"diagnostico" => $diagnosticos
+			"diagnostico" => $diagnosticos,
+			"linea" => $lineas
 		];
 		$this->load->view('administrador/historiaclinica', $data);
 	}
