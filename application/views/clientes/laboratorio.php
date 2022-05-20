@@ -15,7 +15,7 @@
 <link href="<?php echo base_url(); ?>public/css/datatable.css" rel="stylesheet">
 </head>
 <body>
-<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
+<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://www.masbellezaysalud.com/wp-content/uploads/2021/04/Foro-Competencias-De-Laboratorios-Clinicos-Mas-Belleza-y-Salud.jpg'); background-position-y: 30%; background-repeat: no-repeat; background-size: 100%;">
     <span class="mask bg-default opacity-6"></span>
   </div>
   

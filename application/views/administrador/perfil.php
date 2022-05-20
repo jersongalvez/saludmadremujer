@@ -9,7 +9,7 @@
    
 </head>
 <body class="g-sidenav-show bg-gray-100">
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://programasb2b.com/top/wp-content/uploads/2020/04/software_para_clinicas-1.jpg'); background-position-y: 100%; background-repeat: no-repeat; width: 50%;">
     <span class="mask bg-default opacity-6"></span>
   </div>
   <?php require_once("componentes/menu.php"); ?>

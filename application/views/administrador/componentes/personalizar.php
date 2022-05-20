@@ -28,7 +28,7 @@
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
         </div>
-        <a class="btn bg-gradient-dark w-100" target="blank" href="http://wa.me/573227659534">Contactar al desarrollador</a>
+        <a class="btn bg-gradient-dark w-100" target="blank" href="http://wa.me/573155639791 ">Contactar al desarrollador</a>
         <a class="btn btn-outline-dark w-100" href="#">Manual del usuario</a>
         <div class="w-100 text-center">
         </div>

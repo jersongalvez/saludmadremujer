@@ -13,7 +13,7 @@
 	<link href="<?php echo base_url(); ?>public/fontawesome/css/solid.css" rel="stylesheet">
 </head>
 <body class="g-sidenav-show bg-gray-100">
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://www.esaote.com/uploads/pics/cso_14.jpg'); background-position-y: 50%; background-repeat: no-repeat; background-size: 100%">
     <span class="mask bg-default opacity-6"></span>
   </div>
 
