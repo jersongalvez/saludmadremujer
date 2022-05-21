@@ -2011,6 +2011,8 @@
             </div>
          </div>
       </div>
+      </div>
+      </div>
       <!-- ECOGRAFIA MORFOLOGICA -->
       <div class="modal fade" id="ecografiamorfologica" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-fullscreen">
@@ -2022,7 +2024,52 @@
                   </button>
                </div>
                <div class="modal-body">
-                  ...
+               <div class="row ">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Doctor tratante</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $this->session->userdata("apellido")." ". $this->session->userdata("nombre") ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo date("d-m-Y"); ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Hora</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo date("h:i A"); ?>" readonly>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Documento</label>
+                        <input type="number" class="form-control form-control-sm" value="<?php echo $pacientes->documento; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->apellido; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->nombre; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-1">
+                     <div class="form-group">
+                        <label>Edad</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->edad; ?>" readonly>
+                     </div>
+                  </div>
+               </div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-danger">pdf</button>
@@ -2030,6 +2077,8 @@
                </div>
             </div>
          </div>
+      </div>
+      </div>
       </div>
       <!-- ECOGRAFIA GENETICA -->
       <div class="modal fade" id="ecografiagenetica" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2042,7 +2091,173 @@
                   </button>
                </div>
                <div class="modal-body">
-                  ...
+                  <div class="row ">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Doctor tratante</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $this->session->userdata("apellido")." ". $this->session->userdata("nombre") ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo date("d-m-Y"); ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Hora</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo date("h:i A"); ?>" readonly>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Documento</label>
+                        <input type="number" class="form-control form-control-sm" value="<?php echo $pacientes->documento; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->apellido; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->nombre; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-1">
+                     <div class="form-group">
+                        <label>Edad</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->edad; ?>" readonly>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                 <div class="col-md-3">
+                    <label>Feto / Embriòn</label>
+                 </div>
+                 <div class="col-md-3">
+                   <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                     <label class="form-check-label" for="inlineRadio1">Unico</label>
+                   </div>
+                 </div>
+                 <div class="col-md-3">
+                   <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                     <label class="form-check-label" for="inlineRadio2">Multiple</label>
+                   </div>
+                 </div>
+               </div>
+               <div class="row mt-2">
+               <div class="col-md-3">
+                    <label>Situaciòn</label>
+                 </div>
+                 <div class="col-md-3">
+                   <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                     <label class="form-check-label" for="inlineRadio1">Cefalico</label>
+                   </div>
+                 </div>
+                 <div class="col-md-3">
+                   <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                     <label class="form-check-label" for="inlineRadio2">Podatico</label>
+                   </div>
+                 </div>
+                 <div class="col-md-3">
+                   <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                     <label class="form-check-label" for="inlineRadio2">Indiferente</label>
+                   </div>
+                 </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Liquido amniotico</label>
+                        <textarea class="form-control" rows="1">volumen normal para la ededad gestacional</textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-1">
+                     <div class="form-group">
+                        <label>Placenta</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Grados"> 
+                     </div>
+                  </div>
+                  <div class="col-md-1">
+                     <label>LCR</label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-1 mt-4">
+                    <label class="mt-3">mm</label>
+                  </div>
+                  <div class="col-md-1">
+                     <label>LCF</label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-1 mt-4 text-center">
+                    <label class="mt-3">X</label>
+                  </div>
+                  <div class="col-md-1">
+                     <label>. </label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-2">
+                     <label>Art Uterina Derecha</label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-2">
+                     <label>Art Uterina Izquierda</label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-2">
+                     <label>IP Promedio</label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label for=""></label>
+                        <textarea class="form-control" rows="1">Hueso nasal presente</textarea>
+                     </div>
+                  </div>
+                  <div class="col-md-2">
+                     <label>Translucencia nucal</label> 
+                     <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-1 mt-4">
+                    <label class="mt-3">mm</label>
+                  </div>
+                  <div class="col-md-5">
+                     <div class="form-group">
+                        <label for=""></label>
+                        <textarea class="form-control" rows="1">Ductus venosa onda trifasica normal.</textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Conclusion</label>
+                        <textarea rows="2" class="form-control"></textarea>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Sugerencia</label>
+                        <textarea rows="2" class="form-control"></textarea>
+                     </div>
+                  </div>
+               </div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-danger">pdf</button>
@@ -2050,6 +2265,8 @@
                </div>
             </div>
          </div>
+      </div>
+      </div>
       </div>
       <!-- ECOGRAFIA OBSTETRICA -->
       <div class="modal fade" id="ecografiaobstetrica" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2062,7 +2279,53 @@
                   </button>
                </div>
                <div class="modal-body">
-                  ...
+               <div class="row ">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Doctor tratante</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $this->session->userdata("apellido")." ". $this->session->userdata("nombre") ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo date("d-m-Y"); ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Hora</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo date("h:i A"); ?>" readonly>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Documento</label>
+                        <input type="number" class="form-control form-control-sm" value="<?php echo $pacientes->documento; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->apellido; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->nombre; ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="col-md-1">
+                     <div class="form-group">
+                        <label>Edad</label>
+                        <input type="text" class="form-control form-control-sm" value="<?php echo $pacientes->edad; ?>" readonly>
+                     </div>
+                  </div>
+               </div>
+                  //
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-danger">pdf</button>
@@ -2070,6 +2333,9 @@
                </div>
             </div>
          </div>
+      </div>
+      </div>
+      </div>
       </div>
       <!-- ECOGRAFIA MAMA -->
       <div class="modal fade" id="ecografiamama" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2226,6 +2492,9 @@
                </div>
             </div>
          </div>
+      </div>
+      </div>
+      </div>
       </div>
       <?php require_once("componentes/scripts.php"); ?>
       <script src="<?php echo base_url(); ?>public/js/scripts/historiaclinica.js"></script>
