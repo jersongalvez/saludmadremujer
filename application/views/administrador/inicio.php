@@ -269,7 +269,7 @@
                     <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                       <i class="ni ni-bulb-61 text-dark opacity-10"></i>
                     </div>
-                    <h5 class="text-white mb-1">Todos noestros clientes satisfechos</h5>
+                    <h5 class="text-white mb-1">Todos nuestros clientes satisfechos</h5>
                     <p>Nuestro lema es cumplimiento llevamos a tu empresa todo lo estipulado en resoluciones y leyes para que no tengas que pagar multas.</p>
                   </div>
                 </div>
