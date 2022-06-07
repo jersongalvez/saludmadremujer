@@ -161,6 +161,8 @@ $route["clientes/ecografias"] = "clientes/ecografias";
 $route["iniciarsesionclientes"] = "login/iniciarsesionclientes";
 $route["cerrarsesionclientes"] = "login/cerrarsesionclientes";
 
+//RESERVA DE CITAS DESDE LA WEB ******
+$route["citas"] = "clientes/citas";
 
 
 

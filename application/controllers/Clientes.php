@@ -41,4 +41,8 @@ class Clientes extends CI_Controller {
 	public function ecografias() {
 	  $this->load->view("clientes/ecografias");
 	}
+
+	public function citas() {
+		$this->load->view("clientes/citas");
+	}
 }
