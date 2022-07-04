@@ -69,7 +69,7 @@
             <div class="col-md-3">
               <div class="form-group">
                   <label>Usuario</label>
-                  <select class="form-control form-control-sm">
+                  <select class="form-control form-control-sm" id="usuario">
                   <option value="">Usuario</option>
                   <option value="">No Usuario</option>
                   </select>
@@ -78,7 +78,7 @@
             <div class="col-md-3">
               <div class="form-group">
                   <label>Tipo de Documento</label>
-                  <input type="text" class="form-control form-control-sm">
+                  <input type="text" class="form-control form-control-sm" id="tp_documento">
               </div>
             </div>
             <div class="col-md-5">
@@ -287,5 +287,6 @@
       </div>
     </div>
   <?php require_once("componentes/scripts.php"); ?>
+  <script src="<?php echo base_url(); ?>public/js/scripts/pqrs.js"></script>
 </body>
 </html>

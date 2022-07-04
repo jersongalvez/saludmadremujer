@@ -121,7 +121,7 @@ class Pacientes extends Admin_Controller {
 		$this->Pacientes_model->eliminarPaciente($id);
 		redirect(base_url("administracion/pacientes"));
 	}
-
+   
 	public function editarPaciente() {
 		$id = $this->uri->segment(3);
 		$pacientes = $this->Pacientes_model->getPacienteId($id);
