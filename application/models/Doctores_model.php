@@ -57,9 +57,19 @@ class Doctores_model extends CI_model {
            "viernes" => $data["viernes"], 
            "sabado" => $data["sabado"], 
            "domingo" => $data["domingo"],
-           "desde" => $data["desde"],
-           "hasta" => $data["hasta"],
+
+           "Horas_lunes" => $data["Horas_lunes"],
+           "Horas_martes" => $data["Horas_martes"],
+           "Horas_miercoles" => $data["Horas_miercoles"],
+           "Horas_jueves" => $data["Horas_jueves"],
+           "Horas_viernes" => $data["Horas_viernes"],
+           "Horas_sabado" => $data["Horas_sabado"],
+           "Horas_domingo" => $data["Horas_domingo"],
+
+           //"desde" => $data["desde"],
+           //"hasta" => $data["hasta"],
         ];
+        //var_dump($datos);
         $this->db->where("cpe", $data["documento"]);
         $this->db->update("doctores", $datos);
     }

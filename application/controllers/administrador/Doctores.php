@@ -38,9 +38,8 @@ class Doctores extends Admin_Controller {
 
 	public function getDoctoresId()
 	{
-		$doctor = $this->input->post("id");
+		$doctor = $this->input->post("id"); 
 		$result = $this->Doctores_model->getDoctoresId($doctor);
-
 		echo json_encode($result);
 	}
 
@@ -51,6 +50,14 @@ class Doctores extends Admin_Controller {
 	}
 
 	public function actualizarDoctor() {
+
+        $documento = $this->input->post("documento");
+        $nombre = $this->input->post("nombre");
+        $perfil = $this->input->post("perfil");
+        $telefono = $this->input->post("telefono");
+        $direccion = $this->input->post("direccion");
+        $correo = $this->input->post("correo");
+
         $lunes = $this->input->post("lunes");
         $martes = $this->input->post("martes");
         $miercoles = $this->input->post("miercoles");
@@ -58,14 +65,16 @@ class Doctores extends Admin_Controller {
         $viernes = $this->input->post("viernes");
         $sabado = $this->input->post("sabado");
         $domingo = $this->input->post("domingo");
-		$desde = $this->input->post("desde");
-		$hasta = $this->input->post("hasta");
-        $documento = $this->input->post("documento");
-        $nombre = $this->input->post("nombre");
-        $perfil = $this->input->post("perfil");
-        $telefono = $this->input->post("telefono");
-        $direccion = $this->input->post("direccion");
-        $correo = $this->input->post("correo");
+
+		$Horas_lunes = $this->input->post("Horas_lunes");
+		$Horas_martes = $this->input->post("Horas_martes");
+		$Horas_miercoles = $this->input->post("Horas_miercoles");
+		$Horas_jueves = $this->input->post("Horas_jueves");
+		$Horas_viernes = $this->input->post("Horas_viernes");
+		$Horas_sabado = $this->input->post("Horas_sabado");
+		$Horas_domingo = $this->input->post("Horas_domingo");
+
+
 
 		$datos = [
 			"lunes" => $lunes,
@@ -75,8 +84,15 @@ class Doctores extends Admin_Controller {
 			"viernes" => $viernes,
 			"sabado" => $sabado,
 			"domingo" => $domingo,
-			"desde" => $desde,
-			"hasta" => $hasta,
+
+			"Horas_lunes" => $Horas_lunes,
+			"Horas_martes" => $Horas_martes,
+			"Horas_miercoles" => $Horas_miercoles,
+			"Horas_jueves" => $Horas_jueves,
+			"Horas_viernes" => $Horas_viernes,
+			"Horas_sabado" => $Horas_sabado,
+			"Horas_domingo" => $Horas_domingo,
+
 			"documento" => $documento,
 			"nombre" => $nombre,
 			"perfil" => $perfil,

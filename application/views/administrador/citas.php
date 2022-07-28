@@ -130,7 +130,7 @@
       <div class="card">
      <div class="row mt-4">
        <div class="col-md-12">
-       <a class="btn bg-gradient-danger btn-xs" data-bs-toggle="modal" href="#AgregarPaciente" role="button">Agregar <i class="fas fa-plus"></i> </a>
+       <a class="btn bg-gradient-danger btn-xs" onclick="$('#AddCITA').trigger('reset');$('#hora').empty();" data-bs-toggle="modal" href="#AgregarPaciente" role="button">Agregar <i class="fas fa-plus"></i> </a>
        <a class="btn bg-gradient-info btn-xs" target="blank" href="<?php echo base_url(); ?>administracion/calendario" >Todas las citas <i class="fas fa-calendar"></i> </a>
        </div>
      </div>
@@ -195,7 +195,7 @@
  <!-- VENTANAS MODALES -->
  <div class="modal fade" id="AgregarPaciente" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg" role="document">
-    <div class="modal-content">
+    <form class="modal-content" id="AddCITA">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Crear cita</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -203,7 +203,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <div class="messageError"></div>
+        <div class="messageError"></div>
         <div class="row">
         
             <div class="col-md-4">
@@ -212,12 +212,15 @@
                     <input type="number" class="form-control" id="dni">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <div class="form-group input-group-sm">
                     <label>Nombre</label>
                     <input type="text" class="form-control" id="nombre">
                 </div>
-            </div>
+            </div>            
+        </div>
+        <div class="row">
+          
             <div class="col-md-4">
                 <div class="form-group input-group-sm">
                     <label>Medico</label>
@@ -229,42 +232,23 @@
                     </select>
                 </div>
             </div>
-            
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group input-group-sm">
                  <label>Fecha</label>
                  <input type="date" class="form-control" id="fecha" min="<?php echo date("Y-m-d"); ?>">
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group input-group-sm">
-                <label>Horas disponibles</label>
-                  <select class="form-control" id="hora">
-                    <option value="">Seleccione una hora</option>
-                    <option value="08:00">8:00 AM a 8:30 AM </option>
-                    <option value="08:30">8:30 AM a 9:00 AM </option>
-                    <option value="09:00">9:00 AM a 9:30 AM </option>
-                    <option value="09:30">9:30 AM a 10:00 AM </option>
-                    <option value="10:00">10:00 AM a 10:30 AM </option>
-                    <option value="10:30">10:30 AM a 11:00 AM </option>
-                    <option value="11:00">11:00 AM a 11:30 AM </option>
-                    <option value="11:30">11:30 AM a 12:00 AM </option>
-                    <option value="12:00">12:00 PM a 12:30 pm</option>
-                    <option value="12:30">12:30 PM a 1:00 PM </option>
-                    <option value="13:00">1:00 PM a 1:30 PM </option>
-                    <option value="13:30">1:30 PM a 2:00 PM </option>
-                    <option value="14:00">2:00 PM a 2:30 PM </option>
-                    <option value="14:30">2:30 PM a 3:00 PM </option>
-                    <option value="15:00">3:00 PM a 3:30 PM </option>
-                    <option value="15:30">3:30 PM a 4:00 PM </option>
-                    <option value="16:00">4:00 PM a 4:30 PM </option>
-                    <option value="16:30">4:30 PM a 5:00 PM </option>
-                    <option value="17:00">5:00 PM a 5:30 PM </option>
-                    <option value="17:30">5:30 PM a 6:00 PM </option>
-                    <option value="18:00">6:00 PM a 6:00 PM </option>
-                  </select>
+                <label>Horas</label>
+                <div class="input-group">
+                    <select class="form-control" id="hora" style="height: 32px;padding: 0px;">
+                      <option value="">Seleccionar</option>
+                    </select>
+                    <div class="input-group-append">
+                      <button type="button" style="padding: 5px 15px;" class="btn btn-primary" id="lupa_Horario"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
               </div>
             </div>
             
@@ -292,7 +276,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="crearcita">Guardar</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 

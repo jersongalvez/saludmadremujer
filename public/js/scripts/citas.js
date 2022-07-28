@@ -28,6 +28,7 @@ $("#dni").on("blur", function(){
             $(".messageError").html('<div class="alert alert-danger" role="alert">El usuario no se encuentra registrado en la base de datos</div>');
         }
         else {
+          console.log(data);
            data = JSON.parse(data);
            $("#nombre").val(data.apellido + " " + data.nombre);
         }
@@ -40,26 +41,39 @@ $("#dni").on("blur", function(){
     }
    })
 });
-
-$("#medico").on("change", function (){
-    var url2 = baseurl + "administracion/traerhorarios",
-        medico = $("#medico").val();
-        
-        $.ajax({
-            url: url2,
-            method: "POST",
-            data: { medico: medico },
-            success: function (data) {
-                data = JSON.parse(data);
-                console.log(data);
-            },
-            error: function () {
-              $("body").overhang({
-                type: "error",
-                message: "Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
-              }); 
+function Get_Horarios(){
+  var url2 = baseurl + "administracion/traerhorarios",
+  fecha = $("#fecha").val(),
+  medico = $("#medico").val();
+  if(fecha != "" &&  medico != ""){
+    $.ajax({
+      url: url2,
+      method: "POST",
+      data: { medico: medico, fecha: fecha },
+      success: function (data) {
+          data = JSON.parse(data);
+          $("#hora").empty();
+          $("#hora").append('<option value="">Seleccionar</option>');
+          if(data.acction==1){
+            var arrr = data.horarios_mostrar;
+            for (let i = 0; i < arrr.length; i++) {
+              $("#hora").append('<option value="'+arrr[i]['hora']+'">'+arrr[i]['hora']+'</option>');
             }
-        });
+          }
+      },
+      error: function () {
+        $("body").overhang({
+          type: "error",
+          message: "Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
+        }); 
+      }
+    });
+  }else{
+    warning("Completar Medico y Fecha.")
+  }
+}
+$("#lupa_Horario").click(function (){
+  Get_Horarios();
 });
 
 $("#crearcita").on("click", function () {
@@ -136,7 +150,6 @@ function editarCita(id) {
         hora = $("#hora2").val(),
         estado = $("#estado2").val(),
         observaciones = $("#observaciones2").val();
-
         $.ajax({
           url: url4,
           method: "POST",

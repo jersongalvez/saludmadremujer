@@ -7,7 +7,6 @@ class Atencion_model extends CI_model {
         $this->db->from("pacientes");
         $this->db->where("documento", $dni);
         $result = $this->db->get();
-
         if($result->num_rows() > 0) {
             return $result->row();
         }

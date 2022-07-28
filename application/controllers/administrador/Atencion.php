@@ -81,9 +81,9 @@ class Atencion extends Admin_Controller {
 			"costo" => $costo,
 			"comision" => $comision,
 		];
-		 $this->Atencion_model->registrarAtencion($data);
-		 $this->Pagos_model->CrearPagos($factura);
-		 $this->Atencion_model->CrearLineaTiempoAtencion($dni, $especialidad,$doctor);
+		$this->Atencion_model->registrarAtencion($data);
+		$this->Pagos_model->CrearPagos($factura);
+		$this->Atencion_model->CrearLineaTiempoAtencion($dni, $especialidad,$doctor);
 
 	}
 

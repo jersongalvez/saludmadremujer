@@ -21,9 +21,29 @@ class Citas_model extends CI_model {
         $this->db->from("doctores");
         $this->db->where("codigo_doctor", $id);
         $result = $this->db->get();
-
         return $result->row();
     }
+
+    public function getHorariosDoc($id) { 
+        $this->db->select("*");
+        $this->db->from("doctores");
+        $this->db->where("codigo_doctor", $id);
+        $HorariosDoc = $this->db->get();
+        //return $result->row();
+        return $HorariosDoc;
+
+    }
+
+    public function getCitasIdxFecha($fecha,$doctor) {
+        $this->db->select("*");
+        $this->db->from("citas");
+        $this->db->where("fecha", $fecha);
+        $this->db->where("doctor", $doctor);
+        $result = $this->db->get();
+        //return $result->row();
+        return $result;
+    }
+
 
     public function getCitas() {
         $this->db->select("c.*,p.documento,p.nombre,p.apellido,p.telefono,d.nombre as doctor");
@@ -31,9 +51,7 @@ class Citas_model extends CI_model {
         $this->db->join("pacientes p", "c.paciente = p.documento");
         $this->db->join("doctores d", "c.doctor = d.codigo_doctor");
         $this->db->order_by("c.fecha ", "DESC");
-        // $this->db->group_by("p.documento");
         $result = $this->db->get();
-
         return $result;
     }
 
@@ -63,10 +81,8 @@ class Citas_model extends CI_model {
         $this->db->join("pacientes p", "c.paciente = p.documento");
         $this->db->where("c.codigo_cita", $id);
         $result = $this->db->get();
-
         return $result->row();
     }
-
     public function editarCitas($data, $id) {
 		$datos = [
             "doctor" => $data["medico"],
