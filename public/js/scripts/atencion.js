@@ -111,15 +111,6 @@ $(document).ready(function() {
             else if (turno === "") {
               $("#turno").addClass("is-invalid");
             }
-            else if (descuento === "") {
-              $("#descuento").addClass("is-invalid");
-            }
-            else if (cantidad_recibida === "") {
-              $("#cantidad_recibida").addClass("is-invalid");
-            }
-            else if (cantidad_devolver === "") {
-              $("#cantidad_devolver").addClass("is-invalid");
-            }
             else if (forma_pago === "") {
               $("#forma_pago").addClass("is-invalid");
             }
