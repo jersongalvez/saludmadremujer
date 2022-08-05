@@ -27,7 +27,30 @@ $("#guardar_productos").on("click", function () {
         precio = $("#precio").val(),
         moneda = $("#moneda").val(),
         descripcion = $("#descripcion").val();
+    //VALIDACION
+        if (categoria ===""){
+            $("#categoria").addClass("is-invalid");
+        }
+        else if (nombre ===""){
+            $("#nombre").addClass("is-invalid");
+        }
+        else if(codigo ===""){
+            $("#codigo").addClass("is-invalid");
+        }
+        else if (medida ===""){
+            $("#medida").addClass("is-invalid");
+        }
+        else if(cantidad ===""){
+            $("#cantidad").addClass("is-invalid");
+        }
+        else if(precio ===""){
+            $("#precio").addClass("is-invalid");
+        }
+        else if(moneda ===""){
+            $("#moneda").addClass("is-invalid");
 
+        } else {
+            
         $.ajax({
             url: url,
             method: "POST",
@@ -56,7 +79,8 @@ $("#guardar_productos").on("click", function () {
                 }); 
               }
         });
-})
+    }
+});
 
 $("#producto_e").on("change", function() {
     var id = $("#producto_e").val(), 
