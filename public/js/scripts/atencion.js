@@ -106,25 +106,25 @@ $(document).ready(function() {
               $("#costo").addClass("is-invalid");
             }
             else if (comision === "") {
-              $("comision").addClass("is-invalid");
+              $("#comision").addClass("is-invalid");
             }
             else if (turno === "") {
-              $("turno").addClass("is-invalid");
+              $("#turno").addClass("is-invalid");
             }
             else if (descuento === "") {
-              $("descuento").addClass("is-invalid");
+              $("#descuento").addClass("is-invalid");
             }
             else if (cantidad_recibida === "") {
-              $("cantidad_recibida").addClass("is-invalid");
+              $("#cantidad_recibida").addClass("is-invalid");
             }
             else if (cantidad_devolver === "") {
-              $("cantidad_devolver").addClass("is-invalid");
+              $("#cantidad_devolver").addClass("is-invalid");
             }
             else if (forma_pago === "") {
-              $("forma_pago").addClass("is-invalid");
+              $("#forma_pago").addClass("is-invalid");
             }
             else if (total === "") {
-              $("total").addClass("is-invalid");
+              $("#total").addClass("is-invalid");
 
             } else {
               
