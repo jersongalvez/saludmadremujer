@@ -26,7 +26,23 @@
             direccion = $("#direccion").val(),
             correo = $("#correo").val(),
             password = $("#password").val();
-    
+          //VALIDACION 
+            if (cpe === "") {
+              $("#cpe").addClass("is-invalid");
+            }
+            else if (nombre === "") {
+              $("#nombre").addClass("is-invalid");
+            }
+            else if (perfil === "") {
+              $("#perfil").addClass("is-invalid");
+            }
+            else if (telefono === "") {
+              $("#telefono").addClass("is-invalid");
+            }
+            else if (direccion === "") {
+              $("#direccion").addClass("is-invalid");
+
+            } else {
             $.ajax({
                 url: url1,
                 method: "POST",
@@ -52,7 +68,8 @@
                     message: "Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
                   }); 
                 }
-            });
+           });
+          }
     });
 
     function getModalDataDoctor(id) {

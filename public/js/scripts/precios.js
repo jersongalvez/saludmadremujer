@@ -20,7 +20,17 @@ $("#crearPrecio").on("click", function () {
         especialidad = $("#especialidad").val(),
         precio = $("#precio").val(),
         comision = $("#comision").val();
+        //VALIDACION
+        if (especialidad === "") {
+            $("#especialidad").addClass("is-invalid");
+          }
+        else if (precio === "") {
+            $("#precio").addClass("is-invalid");
+          }
+        else if (comision === "") {
+            $("#comision").addClass("is-invalid");
 
+        } else {
     $.ajax({
         url: url1,
         method: "POST",
@@ -39,6 +49,7 @@ $("#crearPrecio").on("click", function () {
             }); 
           }
     });
+    }
 });
 
 
