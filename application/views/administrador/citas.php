@@ -242,8 +242,8 @@
                     }
                     
                     .card___cont:hover{
-                      margin-top:5px;
-                      margin-bottom:20px;
+                      margin-top:15px;
+                      margin-bottom:10px;
                       background-image: linear-gradient(272deg, #cfe3ff 0%, #ffffff 70%) !important;
                     }
 

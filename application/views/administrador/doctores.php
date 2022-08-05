@@ -202,7 +202,7 @@
                   <div class="row">
                     <div class="col-md-4">
                         <div class="form-group input-group-sm">
-                          <label>Documento CPE</label>
+                          <label>Documento</label>
                           <input type="number" class="form-control" id="cpe">
                         </div>
                     </div>
@@ -323,7 +323,7 @@
                                   </div>
                               </div>
                               <div class="col-7">
-                                <!--input type="text" class="form-control Horas_data" readonly id="Horas_todas" name="Horas_todas"  readonly onfocus="focused(this)" onfocusout="defocused(this)" style="padding: 2px;"-->
+                                <input type="text" class="form-control Horas_data" placeholder="Ejm: Minutos;Horario1;Horario2" disabled id="Horas_todas" name="Horas_todas"   onfocus="focused(this)" onfocusout="defocused(this)" style="padding: 2px;">
                               </div>
                             </div>
                             <div class="row">
@@ -333,7 +333,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_lunes" name="Horas_lunes" style="padding: 2px;" >
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00" readonly id="Horas_lunes" name="Horas_lunes" style="padding: 2px;" >
                               </div>
                             </div>
                             <div class="row">
@@ -343,7 +343,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_martes" name="Horas_martes" style="padding: 2px;">
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00" readonly id="Horas_martes" name="Horas_martes" style="padding: 2px;">
                               </div>
                             </div>
                             <div class="row">
@@ -353,7 +353,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_miercoles" name="Horas_miercoles" style="padding: 2px;">
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00;15-19:30" readonly id="Horas_miercoles" name="Horas_miercoles" style="padding: 2px;">
                               </div>
                             </div>
                             <div class="row">
@@ -363,7 +363,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_jueves" name="Horas_jueves" style="padding: 2px;">
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00;15-19:30" readonly id="Horas_jueves" name="Horas_jueves" style="padding: 2px;">
                               </div>
                             </div>
                             <div class="row">
@@ -373,7 +373,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_viernes" name="Horas_viernes" style="padding: 2px;">
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00;15-19:30" readonly id="Horas_viernes" name="Horas_viernes" style="padding: 2px;">
                               </div>
                             </div>
                             <div class="row">
@@ -383,7 +383,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_sabado" name="Horas_sabado" style="padding: 2px;">
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00;15-19:30" readonly id="Horas_sabado" name="Horas_sabado" style="padding: 2px;">
                               </div>
                             </div>
                             <div class="row">
@@ -393,7 +393,7 @@
                                 </div>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control Horas_data" readonly id="Horas_domingo" name="Horas_domingo" style="padding: 2px;">
+                                <input type="text" class="form-control Horas_data" placeholder="15;8:30-13:00;15-19:30" readonly id="Horas_domingo" name="Horas_domingo" style="padding: 2px;">
                               </div>
                             </div>
                           </div>

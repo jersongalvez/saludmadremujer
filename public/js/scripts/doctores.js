@@ -75,7 +75,7 @@
              if(data.lunes == 1){
                $("#lunes").prop("checked", true);
                $("#Horas_lunes").attr("readonly", false);
-               $("#Horas_lunes").val(data.Horas_lunes);
+               $("#Horas_lunes").val((data.Horas_lunes).replace(" ", ""));
              }
              else {
                $("#lunes").prop("checked", false);
@@ -84,7 +84,7 @@
              if(data.martes == 1){
                $("#martes").prop("checked", true);
                $("#Horas_martes").attr("readonly", false);
-               $("#Horas_martes").val(data.Horas_martes);
+               $("#Horas_martes").val((data.Horas_martes).replace(" ", ""));
              }
              else {
                $("#martes").prop("checked", false);
@@ -93,7 +93,7 @@
              if(data.miercoles == 1){
                $("#miercoles").prop("checked", true);
                $("#Horas_miercoles").attr("readonly", false);
-               $("#Horas_miercoles").val(data.Horas_miercoles);
+               $("#Horas_miercoles").val((data.Horas_miercoles).replace(" ", ""));
              }
              else {
                $("#miercoles").prop("checked", false);
@@ -102,7 +102,7 @@
              if(data.jueves == 1){
                $("#jueves").prop("checked", true);
                $("#Horas_jueves").attr("readonly", false);
-               $("#Horas_jueves").val(data.Horas_jueves);
+               $("#Horas_jueves").val((data.Horas_jueves).replace(" ", ""));
              }
              else {
                $("#jueves").prop("checked", false);
@@ -111,7 +111,7 @@
              if(data.viernes == 1){
                $("#viernes").prop("checked", true);
                $("#Horas_viernes").attr("readonly", false);
-               $("#Horas_viernes").val(data.Horas_viernes);
+               $("#Horas_viernes").val((data.Horas_viernes).replace(" ", ""));
              }
              else {
                $("#viernes").prop("checked", false);
@@ -120,7 +120,7 @@
              if(data.sabado == 1){
                $("#sabado").prop("checked", true);
                $("#Horas_sabado").attr("readonly", false);
-               $("#Horas_sabado").val(data.Horas_sabado);
+               $("#Horas_sabado").val((data.Horas_sabado).replace(" ", ""));
              }
              else {
                $("#sabado").prop("checked", false);
@@ -129,7 +129,7 @@
              if(data.domingo == 1){
                $("#domingo").prop("checked", true);
                $("#Horas_domingo").attr("readonly", false);
-               $("#Horas_domingo").val(data.Horas_domingo);
+               $("#Horas_domingo").val((data.Horas_domingo).replace(" ", ""));
              }
              else {
                $("#domingo").prop("checked", false);
@@ -179,6 +179,8 @@ function _warning(sms){
 }
 function Val_Horas(__valluee,nameee){
   sttate = true;
+  var __hora__2_prev = 0;
+  __valluee = __valluee.replace(" ", "");
   if(__valluee!=""){
     valluee = __valluee.split(";");
     if(valluee.length>1){
@@ -195,63 +197,73 @@ function Val_Horas(__valluee,nameee){
                   if( horas__[0]!="" && horas__[1]!=""){
                     __hora__1 = horas__[0];
                     __hora__2 = horas__[1];
-                    if((__hora__1).indexOf(":")>0){
-                        mins__ = (__hora__1).split(":");
-                        if(mins__.length==2){
-                          if( mins__[0]!="" && mins__[1]!=""    &&
-                            (Number.isInteger((mins__[0])*1))   &&
-                            (Number.isInteger((mins__[1])*1))
-                          ){
-                            if(!((mins__[0]*1)>=0 && (mins__[0]*1)<=24)){
-                              sttate = false;_warning(" 9.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                      if((__hora__1).indexOf(":")>0){
+                          mins__ = (__hora__1).split(":");
+                          if(mins__.length==2){
+                            if( mins__[0]!="" && mins__[1]!=""    &&
+                              (Number.isInteger((mins__[0])*1))   &&
+                              (Number.isInteger((mins__[1])*1))
+                            ){
+                              if(!((mins__[0]*1)>=0 && (mins__[0]*1)<=24)){
+                                sttate = false;_warning(" 9.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                              }
+                              if(!((mins__[1]*1)>=0 && (mins__[1]*1)<=59)){
+                                sttate = false;_warning(" 9.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                              }
+                              __hora__1 = mins__[0]*1;
+                            }else{
+                              sttate = false;_warning(" 9- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
                             }
-                            if(!((mins__[1]*1)>=0 && (mins__[1]*1)<=59)){
-                              sttate = false;_warning(" 9.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
-                            }
-                            __hora__1 = mins__[0]*1;
                           }else{
-                            sttate = false;_warning(" 9- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                            sttate = false;_warning(" 8- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
                           }
-                        }else{
-                          sttate = false;_warning(" 8- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                      }else{
+                        if(!(Number.isInteger(__hora__1*1))){
+                          if((__hora__1*1)>0 && __hora__1*1 <= 24){
+                            sttate = false;_warning(" 8.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                          }
                         }
-                    }else{
-                      if(!(Number.isInteger(__hora__1*1))){
-                        if((__hora__1*1)>0 && __hora__1*1 <= 24){
-                          sttate = false;_warning(" 8.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
-                        }
+                        __hora__1 = (__hora__1*1);
                       }
-                    }
-                    if((__hora__2).indexOf(":")>0){
-                        mins__ = (__hora__2).split(":");
-                        if(mins__.length==2){
-                          if( mins__[0]!="" && mins__[1]!=""    &&
-                            (Number.isInteger((mins__[0])*1))   &&
-                            (Number.isInteger((mins__[1])*1))
-                          ){
-                            if(!((mins__[0]*1)>=0 && (mins__[0]*1)<=24)){
-                              sttate = false;_warning(" 9.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                      //console.log(__hora__1*1+"  >   "+__hora__2_prev + " = " +(__hora__1*1 > __hora__2_prev));
+                      if(!(__hora__1*1 > __hora__2_prev)){
+                        sttate = false;_warning(" 9.2- Los horarios deben de ser progresivos. El día "+nameee+" : "+(__hora__1*1+"  >   "+__hora__2_prev + " = " +(__hora__1*1 > __hora__2_prev))); return sttate;
+                      }
+                      if((__hora__2).indexOf(":")>0){
+                          mins__ = (__hora__2).split(":");
+                          if(mins__.length==2){
+                            if( mins__[0]!="" && mins__[1]!=""    &&
+                              (Number.isInteger((mins__[0])*1))   &&
+                              (Number.isInteger((mins__[1])*1))
+                            ){
+                              if(!((mins__[0]*1)>=0 && (mins__[0]*1)<=24)){
+                                sttate = false;_warning(" 9.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                              }
+                              if(!((mins__[1]*1)>=0 && (mins__[1]*1)<=59)){
+                                sttate = false;_warning(" 9.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                              }
+                              __hora__2 = mins__[0]*1;
+                              __hora__2_prev = (__hora__2*1);
+                              console.log(__hora__2_prev);
+
+                            }else{
+                              sttate = false;_warning(" 7- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
                             }
-                            if(!((mins__[1]*1)>=0 && (mins__[1]*1)<=59)){
-                              sttate = false;_warning(" 9.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
-                            }
-                            __hora__2 = mins__[0]*1;
                           }else{
-                            sttate = false;_warning(" 7- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                            sttate = false;_warning(" 6- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
                           }
-                        }else{
-                          sttate = false;_warning(" 6- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                      }else{
+                        if(!(Number.isInteger(__hora__2*1))){
+                          if((__hora__2*1)>0 && __hora__2*1 <= 24){
+                            sttate = false;_warning(" 6.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
+                          }
                         }
-                    }else{
-                      if(!(Number.isInteger(__hora__2*1))){
-                        if((__hora__2*1)>0 && __hora__2*1 <= 24){
-                          sttate = false;_warning(" 6.0- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" : "+__valluee); return sttate;
-                        }
+                        __hora__2_prev = (__hora__2*1);
+                        //console.log(__hora__2_prev);
                       }
-                    }
-                    if(!((__hora__2*1) >=(__hora__1*1))){
-                      sttate = false;_warning(" 6.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" - "+horas__[0]+" - "+horas__[1]); return sttate;
-                    }
+                      if(!((__hora__2*1) >=(__hora__1*1))){
+                        sttate = false;_warning(" 6.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" - "+horas__[0]+" - "+horas__[1]); return sttate;
+                      }
                   }else{
                     sttate = false;_warning(" 5- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" - "+__valluee); return sttate;
                   }
@@ -282,19 +294,19 @@ function Val_Horas(__valluee,nameee){
 
 $("#actualizardoctor").on("click", function () {
     var url3 = baseurl + "administracion/actualizardoctor",
-        documento = $("#cpe1").val(),
-        nombre = $("#nombre1").val(),
-        perfil = $("#perfil1").val(),
-        telefono = $("#telefono1").val(),
-        direccion = $("#direccion1").val(),
-        correo = $("#correo1").val(),
-        Horas_lunes = $("#Horas_lunes").val(),
-        Horas_martes = $("#Horas_martes").val();
-        Horas_miercoles = $("#Horas_miercoles").val();
-        Horas_jueves = $("#Horas_jueves").val();
-        Horas_viernes = $("#Horas_viernes").val();
-        Horas_sabado = $("#Horas_sabado").val();
-        Horas_domingo = $("#Horas_domingo").val();
+        documento = $("#cpe1").val();
+        nombre = $("#nombre1").val();
+        perfil = $("#perfil1").val();
+        telefono = $("#telefono1").val();
+        direccion = $("#direccion1").val();
+        correo = $("#correo1").val();
+        $("#Horas_lunes").val(($("#Horas_lunes").val()).replace(" ", ""));    Horas_lunes = $("#Horas_lunes").val()
+        $("#Horas_martes").val(($("#Horas_martes").val()).replace(" ", ""));     Horas_martes = $("#Horas_martes").val()
+        $("#Horas_miercoles").val(($("#Horas_miercoles").val()).replace(" ", ""));    Horas_miercoles = $("#Horas_miercoles").val()
+        $("#Horas_jueves").val(($("#Horas_jueves").val()).replace(" ", ""));     Horas_jueves = $("#Horas_jueves").val()
+        $("#Horas_viernes").val(($("#Horas_viernes").val()).replace(" ", ""));    Horas_viernes = $("#Horas_viernes").val()
+        $("#Horas_sabado").val(($("#Horas_sabado").val()).replace(" ", ""));     Horas_sabado = $("#Horas_sabado").val()
+        $("#Horas_domingo").val(($("#Horas_domingo").val()).replace(" ", ""));    Horas_domingo = $("#Horas_domingo").val()
     sttate=true;
     if($("#lunes").is(":checked")){
       sttate = Val_Horas(Horas_lunes,"lunes"); /*console.log("lunes - "+Horas_lunes+"  _________________________________");console.log(sttate);*/}

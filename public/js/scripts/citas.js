@@ -1,4 +1,4 @@
-var dias = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
+var dias = ["Domingo","Lunes","Martes","Mierc.","Jueves","Viernes","Sabado"];
 $(document).ready(function() {
   $("#table-citas").DataTable();
 });
@@ -158,7 +158,7 @@ function Suubtmit() {
           success: function () {
             $("body").overhang({
               type: "success",
-              message: "Cita registrada correctamente"
+              message: "Listo"
           });
           setTimeout(reloadPage, 3000);
           },
@@ -244,7 +244,7 @@ function editarCita(id) {
    location.reload();
  }
 
-var dias = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
+var dias = ["Domingo","Lunes","Martes","Mierc.","Jueves","Viernes","Sabado"];
 var __colores = ["#5bd5f5","#f77a92","#7de78a","#8187dc","#959595","#ffaaf5","#e1c62f","#ff674e"];
 
 function Reset_Horarios(){
@@ -258,8 +258,15 @@ function Reset_Horarios(){
     _ordenado.push(dias[i]);
   }
   var a = 0;
+  __fecha_hoy = new Date();
   $(".card > .bg-gradient-info").each(function(){
-    $(this).html(_ordenado[a]);a++;
+    var __today = __fecha_hoy.getDate();
+    $(this).html(_ordenado[a]+" / "+__today);a++;
+    //$(this).html(_ordenado[a]);a++;
+    __fecha_hoy = (__fecha_hoy).setDate(__fecha_hoy.getDate() + 1);
+    __fecha_hoy = new Date(__fecha_hoy);
+    console.log(__fecha_hoy);
+    console.log(__fecha_hoy);
   });
   var a = 0;
   //fecha_hoy = (fecha_hoy).setDate(fecha_hoy.getDate() - 1);
