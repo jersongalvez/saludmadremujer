@@ -1,4 +1,4 @@
-  <script>
+<script>
     var baseurl = "<?php echo base_url();?>";
   </script>
   <script src="<?php echo base_url(); ?>public/js/jquery.min.js"></script>

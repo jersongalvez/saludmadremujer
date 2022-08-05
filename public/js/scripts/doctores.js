@@ -249,7 +249,7 @@ function Val_Horas(__valluee,nameee){
                         }
                       }
                     }
-                    if(!(__hora__2 >=__hora__1)){
+                    if(!((__hora__2*1) >=(__hora__1*1))){
                       sttate = false;_warning(" 6.1- Los horarios de la cita no tienen un formato correcto. El día "+nameee+" - "+horas__[0]+" - "+horas__[1]); return sttate;
                     }
                   }else{

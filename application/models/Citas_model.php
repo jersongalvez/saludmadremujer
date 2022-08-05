@@ -31,7 +31,6 @@ class Citas_model extends CI_model {
         $HorariosDoc = $this->db->get();
         //return $result->row();
         return $HorariosDoc;
-
     }
 
     public function getCitasIdxFecha($fecha,$doctor) {
@@ -44,9 +43,9 @@ class Citas_model extends CI_model {
         return $result;
     }
 
-
     public function getCitas() {
-        $this->db->select("c.*,p.documento,p.nombre,p.apellido,p.telefono,d.nombre as doctor");
+	 	$queryTot = $this->db->query("SET lc_time_names = 'es_ES'");
+        $this->db->select("c.*,p.documento,p.nombre,p.apellido,p.telefono,d.nombre as doctor,DATE_FORMAT(fecha,'%d de %M') as dateeea ");
         $this->db->from("citas c");
         $this->db->join("pacientes p", "c.paciente = p.documento");
         $this->db->join("doctores d", "c.doctor = d.codigo_doctor");
@@ -54,7 +53,6 @@ class Citas_model extends CI_model {
         $result = $this->db->get();
         return $result;
     }
-
     public function getdataCalendario() {
         $this->db->select("CONCAT(p.apellido,' ',p.nombre, ' ( ',c.paciente,' )  DESCRIPCION => ',c.comentarios) as title,CONCAT(c.fecha,' ',c.hora) as start, CONCAT(c.fecha,' ',c.hora) as end,c.*");
         $this->db->from("citas c");

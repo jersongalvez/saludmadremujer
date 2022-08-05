@@ -97,12 +97,19 @@ class Citas extends Admin_Controller {
 				}
             }
         }
+		echo $this->Set_All_Horarios__($horario__,$CitasIdxFecha);
+	}
+	public function Set_All_Horarios__($horario__,$CitasIdxFecha){
 		if($horario__!=""){
 			$horarios_mostrar = array();
 			$horas__ = explode(";", $horario__);
 			$duracion__ = $horas__[0];
 			array_splice($horas__,0,1);
+			//var_dump($horas__);
+
 			for($i=0; $i < sizeof($horas__);$i++){
+				//var_dump($horas__[$i]);
+				//var_dump("-------------------");
 				$hor__as = explode("-", $horas__[$i]);
 				$hor__min_1 = explode(":", $hor__as[0]);
 				$hor__min_2 = explode(":", $hor__as[1]);
@@ -117,35 +124,38 @@ class Citas extends Admin_Controller {
 				array_push($horarios_mostrar,array("hora" =>$hor________min_1));
 				$hor________min_2 = $this->ceros($hor__2*1,2).":".$this->ceros($min__2*1,2).":00";
 				$hor________min_2 = strtotime($hor________min_2);
-				for($i=0; $i < 50;$i++){
+				for($iaxx=0; $iaxx < 50;$iaxx++){
 					if($hor________min_1>=$hor________min_2){
-						$i = 50;
+						$iaxx = 50;
 					}else{
 						$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
 						array_push($horarios_mostrar,array("hora" =>$hor________min_1));
 					}
 				}
+				$horarios_mostrar_new = array();
 				for($iaa=0; $iaa < sizeof($horarios_mostrar);$iaa++){
-					$horarios_mostrar[$iaa]['hora'] = date('H:i',$horarios_mostrar[$iaa]['hora']);
+					$horarios_mostrar_new[$iaa]['hora'] = date('H:i',$horarios_mostrar[$iaa]['hora']);
 				}
 			}
+			//var_dump($horarios_mostrar);
+
 			if ($CitasIdxFecha->num_rows() > 0)
 			{
 				foreach ($CitasIdxFecha->result() as $row)
 				{
-					$horarios_mostrar = $this->eliminar__($horarios_mostrar,$row->hora);
+					$horarios_mostrar_new = $this->eliminar__($horarios_mostrar_new,$row->hora);
 				}
 			}
 			if(sizeof($horarios_mostrar)>0){
 				$data = [
-					"horarios_mostrar" => $horarios_mostrar,
+					"horarios_mostrar" => $horarios_mostrar_new,
 					"sms" => "Horarios Disponibles",
 					"acction" => 1
 				];
 				echo json_encode($data);
 			}else{
 				$data = [
-					"horarios_mostrar" => $horarios_mostrar,
+					"horarios_mostrar" => $horarios_mostrar_new,
 					"sms" => "Dia No Disponible",
 					"acction" => 2
 				];
@@ -159,7 +169,8 @@ class Citas extends Admin_Controller {
 			];
 			echo json_encode($data);
 		}
-	}
+    } 
+
     public function eliminar__($arrr,$hora__){
 		for($iaa=0; $iaa < sizeof($arrr);$iaa++){
 			if($arrr[$iaa]['hora'] == $hora__){
@@ -178,12 +189,11 @@ class Citas extends Admin_Controller {
 	public function getCitasId() {
 		$id = $this->input->post("id");
 		$result = $this->Citas_model->getCitasId($id);
-
 		echo json_encode($result);
 	}
 
 	public function editarCitas() {
-		$id = $this->input->post("id");
+		$id = $this->input->post("idee");
 		$medico = $this->input->post("medico");
 		$fecha = $this->input->post("fecha");
 		$hora = $this->input->post("hora");
