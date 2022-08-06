@@ -88,8 +88,38 @@ $(document).ready(function() {
             cantidad_recibida = $("#cantidadr").val(),
             cantidad_devolver = $("#cantidadv").val(),
             forma_pago = $("input[name=tipopago]:checked").val(),
-            total = $("#total").val();            
-            $.ajax({
+            total = $("#total").val();
+            //VALIDACION 
+            if (dni === "") {
+              $("#dni").addClass("is-invalid");
+            }
+            else if (nombre === "") {
+              $("#nombre").addClass("is-invalid");
+            }
+            else if (especialidad === "") {
+              $("#especialidad").addClass("is-invalid");
+            }
+            else if (doctor === "") {
+              $("#doctor").addClass("is-invalid");
+            }
+            else if (costo === "") {
+              $("#costo").addClass("is-invalid");
+            }
+            else if (comision === "") {
+              $("#comision").addClass("is-invalid");
+            }
+            else if (turno === "") {
+              $("#turno").addClass("is-invalid");
+            }
+            else if (forma_pago === "") {
+              $("#forma_pago").addClass("is-invalid");
+            }
+            else if (total === "") {
+              $("#total").addClass("is-invalid");
+
+            } else {
+              
+              $.ajax({
                 url : url3,
                 method: "POST",
                 data: { 
@@ -121,6 +151,7 @@ $(document).ready(function() {
                   }); 
                 }
             });
+            }      
     });
 
     url4 = baseurl + "contarconsecutivoturnos";
