@@ -8,7 +8,26 @@ $("#crearusuario").on("click", function (){
         correo = $("#correo").val(),
         password = $("#password").val(),
         usuario = $("#usuario").val();
+         //VALIDACION 
+         if (nombre === "") {
+            $("#nombre").addClass("is-invalid");
+          }
+          else if (apellido === "") {
+            $("#apellido").addClass("is-invalid");
+          }
+          else if (tp_usuario === "") {
+            $("#tp_usuario").addClass("is-invalid");
+          }
+          else if (telefono === "") {
+            $("#telefono").addClass("is-invalid");
+          }
+          else if (password === "") {
+            $("#password").addClass("is-invalid");
+          }
+          else if (usuario === "") {
+          $("#usuario").addClass("is-invalid");
 
+        } else {
         $.ajax({
             url : url1,
             method: "POST", 
@@ -36,6 +55,7 @@ $("#crearusuario").on("click", function (){
                 }); 
               }
        });
+    }
 });
 
 function verUsuarios(id) {
