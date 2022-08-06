@@ -329,6 +329,260 @@
             <?php require_once("componentes/footer.php"); ?>
 
          </div>
+
+         <section class="time-table-section pd-top-extra" >
+            <div class="auto-container">
+                  <!-- Sec Title -->
+                  <div class="sec-title text-center">
+                     <span class="title">Disponibilidad de Nuestros Profesionales</span>
+                     <h3>Febrero</h3>
+                     <span class="divider"></span>
+                  </div>
+                  <div class="table-outer">
+                     <!-- Doctors Time Table -->
+                     <table class="doctors-time-table">
+                        <thead>
+                              <tr> 
+                                 <th>LUNES 14 </th>
+                                 <th>MARTES 15 </th>
+                                 <th>MIÉRCOLES 16 </th>
+                                 <th>JUEVES 17 </th>
+                                 <th>VIERNES 18 </th>
+                                 <th>SÁBADO 19 </th>
+                              </tr>
+                        </thead>
+
+                        <tbody>
+                              <!-- Table Row 08:00am -->
+                              <tr>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 7:00 am - 9:00 am </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 7:00 am - 9:00 am </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 7:00 am - 9:00 am </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="empty tdddd"></td>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 7:00 am - 9:00 am </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd ALVA">
+                                    <strong>DR.ALVA</strong>
+                                    <p> 9:00 am </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/d.png" alt=""></figure>
+                                          <h4 class="name">Dr. Armando Alva</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.ALVA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                              </tr>
+
+                              <!-- Table Row 10:00am -->
+                              <tr>
+                                 <td class="tdddd AQUINO">
+                                    <strong>DR.AQUINO</strong>
+                                    <p> 8:00 am - 11:00 am</p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/ggg.png" alt=""></figure>
+                                          <h4 class="name">Dr.Aquino</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.AQUINO%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="empty tdddd"></td>
+                                 <td class="tdddd AQUINO">
+                                    <strong>DR.AQUINO</strong>
+                                    <p> 8:00 am - 11:00 am</p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/ggg.png" alt=""></figure>
+                                          <h4 class="name">Dr.Aquino</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.AQUINO%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd LLATAS">
+                                    <strong>DR.LLATAS</strong>
+                                    <p> 10:00 am </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/b.png" alt=""></figure>
+                                          <h4 class="name">Dr. Santiago Llatas</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.LLATAS%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="empty tdddd"></td>
+                                 <td class="empty tdddd"></td>
+                              </tr>
+
+                              <!-- Table Row 11:00am -->
+                              <tr>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 12:00 am - 2:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 12:00 am - 2:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 12:00 am - 2:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd VIDAURRE">
+                                    <strong>DR.VIDAURRE</strong>
+                                    <p> 12:00 am - 2:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
+                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="empty tdddd"></td>
+                                 <td class="empty tdddd"></td>
+                              </tr>
+
+                              <!-- Table Row 11:30am -->
+                              <tr>
+                                 <td class="tdddd CUNIA">
+                                    <strong>DR.CUNIA</strong>
+                                    <p> 12:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/e.png" alt=""></figure>
+                                          <h4 class="name">Dra. Marleni Cunia</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.CUNIA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="tdddd AQUINO">
+                                    <strong>DR.AQUINO</strong>
+                                    <p> 3:00pm - 5:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/ggg.png" alt=""></figure>
+                                          <h4 class="name">Dr.Aquino</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.AQUINO%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="tdddd CUNIA">
+                                    <strong>DR.CUNIA</strong>
+                                    <p> 12:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/e.png" alt=""></figure>
+                                          <h4 class="name">Dra. Marleni Cunia</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.CUNIA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="empty tdddd"></td>
+                                 <td class="tdddd PAREDES">
+                                    <strong>DR.PAREDES</strong>
+                                    <p> 4:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/fff.png" alt=""></figure>
+                                          <h4 class="name">Dr.Paredes</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.PAREDES%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 <td class="empty tdddd"></td>
+                              </tr>
+
+                              <!-- Table Row 12:00am -->
+                              <tr>
+                                 <td class="tdddd LLATAS">
+                                    <strong>DR.LLATAS</strong>
+                                    <p> 4:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/b.png" alt=""></figure>
+                                          <h4 class="name">Dr. Santiago Llatas</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.LLATAS%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="tdddd ALVA">
+                                    <strong>DR.ALVA</strong>
+                                    <p> 3:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/d.png" alt=""></figure>
+                                          <h4 class="name">Dr. Armando Alva</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.ALVA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="tdddd PAREDES">
+                                    <strong>DR.PAREDES</strong>
+                                    <p> 4:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/fff.png" alt=""></figure>
+                                          <h4 class="name">Dr.Paredes</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.PAREDES%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="tdddd ALVA">
+                                    <strong>DR.ALVA</strong>
+                                    <p> 3:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/d.png" alt=""></figure>
+                                          <h4 class="name">Dr. Armando Alva</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.ALVA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="tdddd LLATAS">
+                                    <strong>DR.LLATAS</strong>
+                                    <p> 4:00 pm </p>
+                                    <div class="doctor-info">
+                                          <figure class="thumb"><img src="images/team/b.png" alt=""></figure>
+                                          <h4 class="name">Dr. Santiago Llatas</h4>
+                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.LLATAS%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
+                                    </div>
+                                 </td>
+                                 
+                                 <td class="empty tdddd"></td>
+                              </tr>
+                        </tbody>
+                     </table>
+                  </div>
+            </div>      
+         </section>
+         
       </main>
       <?php require_once("componentes/personalizar.php"); ?>
       <!-- LARGE MODAL -->

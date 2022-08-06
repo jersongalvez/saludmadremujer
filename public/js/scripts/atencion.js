@@ -51,7 +51,7 @@ $(document).ready(function() {
        })
     });
 
-    $("#especialidad").on("blur", function () {
+    $("#especialidad").change( function () {
         var url2 = baseurl + "buscarespecialidad",
             especialidad = $("#especialidad").val();
 
@@ -64,6 +64,7 @@ $(document).ready(function() {
              console.log(data);
               $("#costo").val(data.costo);
               $("#comision").val(data.comision_aproximada);
+              Cal_Total();
               $("#factura").prop("hidden", false);
           },
           error: function () {
@@ -74,6 +75,25 @@ $(document).ready(function() {
           }
         });
     });
+    
+    $("#costo").keyup(function() {Cal_Total();});
+    $("#descuento").keyup(function() {Cal_Total();});
+    $("#comision").keyup(function() {Cal_Total();});
+    $("#cantidadv").keyup(function() {Cal_Total();});
+    $("#cantidadr").keyup(function() {Cal_Total();});
+
+    function Cal_Total(){
+      if(!($("#descuento").val()*1>($("#costo").val()-$("#comision").val()))){
+        $("#cantidadv").val($("#cantidadr").val()-$("#costo").val());
+        $("#total").val($("#costo").val()-$("#descuento").val());
+      }else{
+        $("body").overhang({
+          type: "error",
+          message: "El descuento excede lo permitido.",
+        }); 
+      }
+    }
+
 
     $("#crear-atencion").on("click", function() {
         var url3 = baseurl + "registraratencion",
@@ -141,18 +161,7 @@ $(document).ready(function() {
       });
 
      
-    
-    $("#comision").on("blur", function () {
-        var costo = $("#costo").val(),
-        descuento = $("#descuento").val(),
-        total = (costo - descuento) ;
-        $("#total").val(total);
-        var costo = $("#costo").val(),
-            cantidadr = $("#cantidadr").val(),
-           //  descuento = $("#descuento").val();
-            devolver = cantidadr - costo;
-           $("#cantidadv").val(devolver);
-     });
+
 
      const reloadPage = () => {
         location.reload();

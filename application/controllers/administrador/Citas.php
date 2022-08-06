@@ -11,10 +11,110 @@ class Citas extends Admin_Controller {
 	public function index()
 	{
 		$doctores = $this->Doctores_model->getDoctores();
+		//$__doctores__pro = $doctores;
+		//$horarios_diarios = array();
+		//array_push($horarios_mostrar,array("hora" =>$hor________min_1));
+		//if ($__doctores__pro->num_rows() > 0)
+        //{
+		//	foreach ($__doctores__pro->result() as $row)
+        //    {
+		//		$row->Horas_lunes = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_lunes,$row->nombre,$row->codigo_doctor);
+		//		$row->Horas_martes = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_martes,$row->nombre,$row->codigo_doctor);
+		//		$row->Horas_miercoles = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_miercoles,$row->nombre,$row->codigo_doctor);
+		//		$row->Horas_jueves = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_jueves,$row->nombre,$row->codigo_doctor);
+		//		$row->Horas_viernes = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_viernes,$row->nombre,$row->codigo_doctor);
+		//		$row->Horas_sabado = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_sabado,$row->nombre,$row->codigo_doctor);
+		//		$row->Horas_domingo = $this->Set_All_Horarios__ALL_BIG__($__doctores__pro,$row->Horas_domingo,$row->nombre,$row->codigo_doctor);
+        //    }
+        //}
 		$citas = $this->Citas_model->getCitas();
-		$data = ["doctor" => $doctores, "cita" => $citas];
+		$data = [
+			"doctor" 			=> $doctores,
+			//"__doctores__pro" 	=> $__doctores__pro,
+			"cita" 				=> $citas
+		];
 		$this->load->view('administrador/citas', $data);
 	}
+	public function Set_All_Horarios__ALL_BIG__($__doctores__pro,$horario__,$nombre,$codigo_doctor){
+		if($horario__!=""){
+			$__doctores__pro = array();//13;15:30-19:00;21-23
+			$horas__ = explode(";", $horario__);//[13];[15:30-19:00];[21-23]
+			array_splice($horas__,0,1);//[15:30-19:00];[21-23]
+
+			for($i=0; $i < sizeof($horas__);$i++){
+				$hor__as = explode("-", $horas__[$i]);//(15:30)-(19:00)
+
+				$hor__min_1 = explode(":", $hor__as[0]);//([15]:[30])
+				$hor__1 = ($hor__min_1[0]*1);	//[15]
+				$min__1 = 0;//[0]
+				if(sizeof($hor__min_1)>1){	
+					$min__1 = ($hor__min_1[1]*1);//[30]
+				}
+
+				$hor__min_2 = explode(":", $hor__as[1]);//([19]:[00])
+				$hor__2 = ($hor__min_2[0]*1);	//[19]
+				$min__2 = 0;//[0]
+				if(sizeof($hor__min_2)>1){	
+					$min__2 = ($hor__min_2[1]*1);////[00]
+				}
+
+				$am_pm = "";
+				if(!($hor__1*1>12)){//AM
+					$am_pm = "am";
+				}else{//PM
+					$am_pm = "am";
+				}
+				$hor________min_1 = $this->ceros($hor__1*1,2).":".$this->ceros($min__1*1,2).":00";
+				$hor________min_2 = $this->ceros($hor__2*1,2).":".$this->ceros($min__2*1,2).":00";
+
+				$hor________min_1 = strtotime($hor________min_1);
+				array_push($__doctores__pro,array("hora" =>$hor________min_1));
+
+				$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
+				array_push($__doctores__pro,array("hora" =>$hor________min_1));
+
+				$hor________min_2 = $this->ceros($hor__2*1,2).":".$this->ceros($min__2*1,2).":00";
+				$hor________min_2 = strtotime($hor________min_2);
+				for($iaxx=0; $iaxx < 50;$iaxx++){
+					if($hor________min_1>=$hor________min_2){
+						$iaxx = 50;
+					}else{
+						$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
+						array_push($horarios_mostrar,array("hora" =>$hor________min_1));
+					}
+				}
+				$horarios_mostrar_new = array();
+				for($iaa=0; $iaa < sizeof($horarios_mostrar);$iaa++){
+					$horarios_mostrar_new[$iaa]['hora'] = date('H:i',$horarios_mostrar[$iaa]['hora']);
+				}
+			}
+			//var_dump($horarios_mostrar);
+
+			if ($CitasIdxFecha->num_rows() > 0)
+			{
+				foreach ($CitasIdxFecha->result() as $row)
+				{
+					$horarios_mostrar_new = $this->eliminar__($horarios_mostrar_new,$row->hora);
+				}
+			}
+			if(sizeof($horarios_mostrar)>0){
+				$data = [
+					"horarios_mostrar" => $horarios_mostrar_new,
+					"sms" => "Horarios Disponibles",
+					"acction" => 1
+				];
+				echo json_encode($data);
+			}else{
+				$data = [
+					"horarios_mostrar" => $horarios_mostrar_new,
+					"sms" => "Dia No Disponible",
+					"acction" => 2
+				];
+				echo json_encode($data);
+			}
+		}
+		echo $horario__;
+    } 
 
 	public function crearCita() {
 		$dni = $this->input->post("dni");

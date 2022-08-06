@@ -244,7 +244,7 @@ function editarCita(id) {
    location.reload();
  }
 
-var dias = ["Domingo","Lunes","Martes","Mierc.","Jueves","Viernes","Sabado"];
+var dias = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
 var __colores = ["#5bd5f5","#f77a92","#7de78a","#8187dc","#959595","#ffaaf5","#e1c62f","#ff674e"];
 
 function Reset_Horarios(){
@@ -261,12 +261,10 @@ function Reset_Horarios(){
   __fecha_hoy = new Date();
   $(".card > .bg-gradient-info").each(function(){
     var __today = __fecha_hoy.getDate();
-    $(this).html(_ordenado[a]+" / "+__today);a++;
+    $(this).html((_ordenado[a]).slice(0, 6)+" / "+__today);a++;
     //$(this).html(_ordenado[a]);a++;
     __fecha_hoy = (__fecha_hoy).setDate(__fecha_hoy.getDate() + 1);
     __fecha_hoy = new Date(__fecha_hoy);
-    console.log(__fecha_hoy);
-    console.log(__fecha_hoy);
   });
   var a = 0;
   //fecha_hoy = (fecha_hoy).setDate(fecha_hoy.getDate() - 1);
@@ -277,6 +275,8 @@ function Reset_Horarios(){
         var namee__ = (arr_doctors[i]['nombre']).split(" ");
         fecha_hoy = new Date(fecha_hoy);
         var todayDate = (fecha_hoy).toISOString().slice(0, 10);
+        console.log(arr_doctors[i]['nombre']+" "+"Horas_"+(_ordenado[a]).toLowerCase());
+        console.log(arr_doctors[i]);
         $(this).append("<p onclick='call_reg_cita("+'"'+todayDate+'"'+","+arr_doctors[i]['codigo_doctor']+")' class='doc_p' title='"+arr_doctors[i]['nombre']+" "+arr_doctors[i]["Horas_"+(_ordenado[a]).toLowerCase()]+";' style='background-color: "+__colores[i]+";'><i class='fa fa-user-md'></i>  Dr."+((namee__[0]).substr(0,10)).toUpperCase()+"</p>");
       }
     }
