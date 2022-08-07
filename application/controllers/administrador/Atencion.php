@@ -56,12 +56,22 @@ class Atencion extends Admin_Controller {
 		$costo = $this->input->post("costo");
 		$comision = $this->input->post("comision");
 		$turno = $this->input->post("turno");
+		$cola_atencion = $this->input->post("cola_atencion");
 
 		//FACTURA
 		$descuento = $this->input->post("descuento");
 		$total = $this->input->post("total");
 		$total_recibida= $this->input->post("cantidad_recibida");
 		$tipo_deposito = $this->input->post("forma_pago");
+
+		$orden__ = 0;
+		
+		$CountTurnos = $this->Atencion_model->CountTurnos();
+		if ($CountTurnos->num_rows() > 0){
+			foreach ($CountTurnos->result() as $row){
+				$orden__ = $row->Orden;
+			}
+		}
 
 		$factura = [
 			"dni" => $dni,
@@ -80,7 +90,10 @@ class Atencion extends Admin_Controller {
 			"doctor" => $doctor,
 			"costo" => $costo,
 			"comision" => $comision,
+			"cola_atencion" => $cola_atencion,
+			"orden__" => $orden__,
 		];
+
 		$this->Atencion_model->registrarAtencion($data);
 		$this->Pagos_model->CrearPagos($factura);
 		$this->Atencion_model->CrearLineaTiempoAtencion($dni, $especialidad,$doctor);

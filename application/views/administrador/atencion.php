@@ -228,6 +228,21 @@
                                   <input type="text" class="form-control" id="hc" name="hc" readonly>
                               </div>
                             </div>
+                            <div class="col-md-5">
+                              <div class="form-group input-group-sm">
+                                  <label>¿Lista de espera?</label>
+                                  <div class="form-group input-group-sm">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="atencion_espera" id="atencion_espera_1" value="Si" checked>
+                                      <label class="form-check-label" for="inlineRadio1">Si</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="atencion_espera" id="atencion_espera_2" value="No">
+                                      <label class="form-check-label" for="inlineRadio2">No</label>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
                             <div class="col-md-12">
                               <div class="form-group input-group-sm">
                                   <label>Nombre completo</label>

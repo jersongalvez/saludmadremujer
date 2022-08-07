@@ -21,9 +21,10 @@ class Atencion_model extends CI_model {
             "medico" => $data["doctor"],
             "especialidad" => $data["especialidad"],
             "costo" => $data["costo"],
+            "cola_atencion" => $data["cola_atencion"],
             "comision" => $data["comision"],
             "estado" => "Registrado",
-            "fecha" => date("d-m-Y"),
+            "fecha" => date("Y-m-d"),
             "hora" => date("h:i A"),
             "usuario" => $this->session->userdata("nombre")
         ];
@@ -39,7 +40,6 @@ class Atencion_model extends CI_model {
         $this->db->where("a.estado", "Registrado");
         $this->db->order_by("codigo_atencion", "asc");
         $result = $this->db->get();
-
         return $result;
     }
 
@@ -51,10 +51,11 @@ class Atencion_model extends CI_model {
     }
 
     public function CountTurnos() {
-        $this->db->select("count(*) as numero");
-        $this->db->from("turnera");
+        $this->db->select("count(*) as Orden");
+        $this->db->from("atenciones");
+        $this->db->where("cola_atencion", "Si");
+        $this->db->where("fecha = CURRENT_DATE()");
         $result = $this->db->get();
-        
         return $result->row();
     }
 

@@ -108,6 +108,7 @@ $(document).ready(function() {
             cantidad_recibida = $("#cantidadr").val(),
             cantidad_devolver = $("#cantidadv").val(),
             forma_pago = $("input[name=tipopago]:checked").val(),
+            cola_atencion = $("input[name=atencion_espera]:checked").val(),
             total = $("#total").val();
             //VALIDACION 
             if (dni === "") {
@@ -134,9 +135,11 @@ $(document).ready(function() {
             else if (forma_pago === "") {
               $("#forma_pago").addClass("is-invalid");
             }
+            else if (cola_atencion === "") {
+              $("#forma_pago").addClass("is-invalid");
+            }
             else if (total === "") {
               $("#total").addClass("is-invalid");
-
             } else {
               
               $.ajax({
@@ -154,6 +157,7 @@ $(document).ready(function() {
                     cantidad_recibida: cantidad_recibida,
                     cantidad_devolver: cantidad_devolver,
                     forma_pago: forma_pago,
+                    cola_atencion: cola_atencion,
                     total: total
                 },
                 success: function () {
