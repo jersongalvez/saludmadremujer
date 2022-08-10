@@ -24,6 +24,7 @@ class Atencion extends Admin_Controller {
 
 	public function atencionMedicos() {
 		$pacientes = $this->Atencion_model->getAtencionesDoctor();
+		//var_dump($pacientes->result());
 		$data = [
 			"paciente" => $pacientes 
 		];
@@ -65,11 +66,15 @@ class Atencion extends Admin_Controller {
 		$tipo_deposito = $this->input->post("forma_pago");
 
 		$orden__ = 0;
-		
-		$CountTurnos = $this->Atencion_model->CountTurnos();
-		if ($CountTurnos->num_rows() > 0){
-			foreach ($CountTurnos->result() as $row){
-				$orden__ = $row->Orden;
+		if($cola_atencion=="Si"){
+			$CountTurnos = $this->Atencion_model->CountTurnos($doctor);
+			if ($CountTurnos->num_rows() > 0){
+				foreach ($CountTurnos->result() as $row){
+					$orden__ = (($row->Orden)*1)+1;
+					var_dump($orden__);
+				}
+			}else{
+				$orden__ = 1;
 			}
 		}
 

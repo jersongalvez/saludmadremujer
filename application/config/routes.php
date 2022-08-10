@@ -23,6 +23,7 @@ $route["administracion/doctores"] = "administrador/doctores";
 $route["administracion/citas"] = "administrador/citas";
 $route["administracion/recursoshumanos"] = "administrador/Recursoshumanos";
 $route["administracion/financiero"] = "administrador/financiero";
+$route["administracion/gastos"] = "administrador/gastos";
 $route["administracion/precios"] = "administrador/precios";
 $route["administracion/reportes"] = "administrador/reportes";
 $route["administracion/colposcopia"] = "administrador/colposcopia";

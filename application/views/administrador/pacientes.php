@@ -180,7 +180,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group input-group-sm has-validation">
                     <label>DNI</label>
                     <input type="number" class="form-control" id="dni" value="">
@@ -207,7 +207,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <div class="form-group input-group-sm">
                     <label>No HC</label>
                     <input type="text" class="form-control" id="hc" readonly>
@@ -373,7 +373,6 @@
               <div class="form-group input-group-sm">
                  <label>Documento</label>
                  <input type="text" class="form-control" id="documento">
-                 
                 </div>
               </div>
               <div class="col-md-6">

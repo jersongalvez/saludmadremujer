@@ -75,7 +75,15 @@ class Doctores extends Admin_Controller {
 		$Horas_domingo = $this->input->post("Horas_domingo");
 
 
+		$Horas_lunes 		= str_replace(" ", "", $Horas_lunes);
+		$Horas_martes 		= str_replace(" ", "", $Horas_martes);
+		$Horas_miercoles	= str_replace(" ", "", $Horas_miercoles);
+		$Horas_jueves 		= str_replace(" ", "", $Horas_jueves);
+		$Horas_viernes 		= str_replace(" ", "", $Horas_viernes);
+		$Horas_sabado 		= str_replace(" ", "", $Horas_sabado);
+		$Horas_domingo 		= str_replace(" ", "", $Horas_domingo);
 
+		
 		$datos = [
 			"lunes" => $lunes,
 			"martes" => $martes,

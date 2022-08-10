@@ -94,7 +94,6 @@ $(document).ready(function() {
       }
     }
 
-
     $("#crear-atencion").on("click", function() {
         var url3 = baseurl + "registraratencion",
             dni = $("#dni").val(),
@@ -177,26 +176,6 @@ $(document).ready(function() {
             });
             }      
     });
-
-    url4 = baseurl + "contarconsecutivoturnos";
-      $.ajax({
-         url:url4,
-         method: "GET",
-         success: function (data) {
-            data = JSON.parse(data);
-            suma = parseInt(data.numero.numero) + 1;
-            $("#turno").val(suma);
-         },
-         error: function () {
-            $("body").overhang({
-              type: "error",
-              message: "Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
-            }); 
-          }
-      });
-
-     
-
 
      const reloadPage = () => {
         location.reload();

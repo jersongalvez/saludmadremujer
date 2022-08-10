@@ -24,7 +24,7 @@ $pdf->Cell(50,6,'', '', 0,'L', false );
 $pdf->Cell(60,6,'INFORME DIARIO DE CIERRE DE CAJA', '', 0,'L', false );
 $pdf->SetFont('Times','B',9);
 $pdf->Ln(14);
-$pdf->Cell(60,6,'FECHA', 1, 0,'C', false );
+$pdf->Cell(60,6,'FECHA Referencia', 1, 0,'C', false );
 $pdf->Cell(134,6,'RESPONSABLE', 1, 0,'L', false );
 
 $pdf->SetFont('Times','',9);
@@ -72,12 +72,15 @@ $pdf->SetFont('Times','B',9);
 
 $caja = $reportes2->total - $reportes2->comision;
 $pdf->Ln(6);
+
 $pdf->Cell(54,6,'', 0,'', false );
 $pdf->Cell(82,6,'', 0,'', false );
 $pdf->Cell(20,6,'CAJA', 1, 0,'', false );
 $pdf->Cell(38,6,$caja, 1, 0,'', false );
 $pdf->SetFont('Times','',9);
-
+$pdf->Ln(5);
+$pdf->Cell(30,6,'Impresion', 1, 0,'C', false );
+$pdf->Cell(30,6,date('H:i A d-m-Y'), 1, 0,'C', false );
 
 
 $pdf->Output();

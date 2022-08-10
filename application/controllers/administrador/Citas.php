@@ -118,6 +118,8 @@ class Citas extends Admin_Controller {
 
 	public function crearCita() {
 		$dni = $this->input->post("dni");
+		$nombre = $this->input->post("nombre");
+		$telefono = $this->input->post("telefono");
 		$medico = $this->input->post("medico");
 		$fecha = $this->input->post("fecha");
 		$hora = $this->input->post("hora");
@@ -126,6 +128,8 @@ class Citas extends Admin_Controller {
 
 		$datos = [
 			"dni" => $dni,
+			"nombre" => $nombre,
+			"telefono" => $telefono,
 			"medico" => $medico,
 			"fecha" => $fecha,
 			"hora" => $hora,
@@ -200,47 +204,47 @@ class Citas extends Admin_Controller {
 		echo $this->Set_All_Horarios__($horario__,$CitasIdxFecha);
 	}
 	public function Set_All_Horarios__($horario__,$CitasIdxFecha){
+		$horario__ 		= str_replace(" ", "", $horario__);
 		if($horario__!=""){
 			$horarios_mostrar = array();
 			$horas__ = explode(";", $horario__);
 			$duracion__ = $horas__[0];
 			array_splice($horas__,0,1);
-			//var_dump($horas__);
-
 			for($i=0; $i < sizeof($horas__);$i++){
-				//var_dump($horas__[$i]);
-				//var_dump("-------------------");
 				$hor__as = explode("-", $horas__[$i]);
-				$hor__min_1 = explode(":", $hor__as[0]);
-				$hor__min_2 = explode(":", $hor__as[1]);
-				$hor__1 = ($hor__min_1[0]*1);	$min__1 = 0;
-				if(sizeof($hor__min_1)>1){	$min__1 = ($hor__min_1[1]*1);}
-				$hor__2 = ($hor__min_2[0]*1);	$min__2 = 0;
-				if(sizeof($hor__min_2)>1){	$min__2 = ($hor__min_2[1]*1);}
-				$hor________min_1 = $this->ceros($hor__1*1,2).":".$this->ceros($min__1*1,2).":00";
-				$hor________min_1 = strtotime($hor________min_1);
-				array_push($horarios_mostrar,array("hora" =>$hor________min_1));
-				$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
-				array_push($horarios_mostrar,array("hora" =>$hor________min_1));
-				$hor________min_2 = $this->ceros($hor__2*1,2).":".$this->ceros($min__2*1,2).":00";
-				$hor________min_2 = strtotime($hor________min_2);
-				for($iaxx=0; $iaxx < 50;$iaxx++){
-					if($hor________min_1>=$hor________min_2){
-						$iaxx = 50;
-					}else{
-						$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
-						array_push($horarios_mostrar,array("hora" =>$hor________min_1));
+				if(sizeof($hor__as)>1){
+					$hor__min_1 = explode(":", $hor__as[0]);
+					$hor__min_2 = explode(":", $hor__as[1]);
+					$hor__1 = ($hor__min_1[0]*1);	$min__1 = 0;
+					if(sizeof($hor__min_1)>1){	$min__1 = ($hor__min_1[1]*1);}
+					$hor__2 = ($hor__min_2[0]*1);	
+					$min__2 = 0;
+
+					if(sizeof($hor__min_2)>1){	$min__2 = ($hor__min_2[1]*1);}
+					$hor________min_1 = $this->ceros($hor__1*1,2).":".$this->ceros($min__1*1,2).":00";
+					$hor________min_1 = strtotime($hor________min_1);
+					array_push($horarios_mostrar,array("hora" =>$hor________min_1));
+					$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
+					array_push($horarios_mostrar,array("hora" =>$hor________min_1));
+					$hor________min_2 = $this->ceros($hor__2*1,2).":".$this->ceros($min__2*1,2).":00";
+					$hor________min_2 = strtotime($hor________min_2);
+					for($iaxx=0; $iaxx < 50;$iaxx++){
+						if($hor________min_1>=$hor________min_2){
+							$iaxx = 50;
+						}else{
+							$hor________min_1 = strtotime('.'.$duracion__.' minute',$hor________min_1);
+							array_push($horarios_mostrar,array("hora" =>$hor________min_1));
+						}
+					}
+					$horarios_mostrar_new = array();
+					for($iaa=0; $iaa < sizeof($horarios_mostrar);$iaa++){
+						$horarios_mostrar_new[$iaa]['hora'] = date('H:i',$horarios_mostrar[$iaa]['hora']);
 					}
 				}
-				$horarios_mostrar_new = array();
-				for($iaa=0; $iaa < sizeof($horarios_mostrar);$iaa++){
-					$horarios_mostrar_new[$iaa]['hora'] = date('H:i',$horarios_mostrar[$iaa]['hora']);
-				}
+				
 			}
-			//var_dump($horarios_mostrar);
 
-			if ($CitasIdxFecha->num_rows() > 0)
-			{
+			if ($CitasIdxFecha->num_rows() > 0){
 				foreach ($CitasIdxFecha->result() as $row)
 				{
 					$horarios_mostrar_new = $this->eliminar__($horarios_mostrar_new,$row->hora);
@@ -294,12 +298,18 @@ class Citas extends Admin_Controller {
 
 	public function editarCitas() {
 		$id = $this->input->post("idee");
+		$dni = $this->input->post("dni");
+		$nombre = $this->input->post("nombre");
+		$telefono = $this->input->post("telefono");
 		$medico = $this->input->post("medico");
 		$fecha = $this->input->post("fecha");
 		$hora = $this->input->post("hora");
 		$estado  = $this->input->post("estado");
 		$observaciones = $this->input->post("observaciones");
 		$data = [
+			"dni" => $dni,
+			"nombre" => $nombre,
+			"telefono" => $telefono,
 			"medico" => $medico,
 			"fecha" => $fecha,
 			"hora" => $hora,
