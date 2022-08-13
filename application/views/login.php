@@ -57,9 +57,9 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form" method="post" validate>
+              <form role="form" method="post" validate id="FormLOG">
                 <div class="mb-3">
-                  <input type="email" class="form-control" id="correo" value="" required placeholder="Usuario">
+                  <input type="text" required class="form-control" id="correo" value=""  placeholder="Usuario">
                 </div>
                 <div class="mb-3">
                   <input type="password" id="password" value="" class="form-control" required placeholder="Contraseña">

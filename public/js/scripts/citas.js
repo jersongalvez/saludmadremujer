@@ -356,7 +356,106 @@ var __colores = [
 	"#ff674e",
 ];
 
+
 function Reset_Horarios() {
+	day_count = 0;
+	fecha_hoy = new Date();
+	var _ordenado = new Array();
+	var __today = fecha_hoy.getDay();
+	var a = 0;
+	for (var i = __today; i < dias.length; i++) {
+		_ordenado.push(dias[i]);
+	}
+	for (var i = 0; i < __today; i++) {
+		_ordenado.push(dias[i]);
+	}
+
+	var _ordenado_html = new Array();
+	var a = 0;
+	
+	for (var i = __today; i < dias.length; i++) {
+		arr__ = horarios_diarios[i];
+		arr__ = ord_arr(arr__);
+		
+		var _html_dias = "";
+		console.log(arr_diass[a]);
+		for (var iqq = 0; iqq < arr__.length; iqq++) {
+			var namee__ = arr__[iqq]["namedoc"].split(" ");
+			_html_dias = _html_dias + 
+				"<p onclick='call_reg_cita(" +
+					'"' +
+					arr_diass[a] +
+					'"' +
+					"," +
+					arr__[iqq]["doc_ide"] +
+					")' class='doc_p' title='" +
+					arr__[iqq]["namedoc"] +
+					" " +
+					//arr__[iqq]["Horas_" + (_ordenado[a]).toLowerCase()] +
+					"' style='background-color: #"+arr__[iqq]["color"]+";'><i class='fa fa-user-md'></i>  Dr." +
+					namee__[0].substr(0, 10).toUpperCase() +"<br><span style='font-size:9px;font-weight:bold;color:#3e3e3e;'>"+arr__[iqq]["horario"]+"<br></p>";
+		}
+		a++;
+		_ordenado_html.push(_html_dias);
+	}
+	for (var i = 0; i < __today; i++) {
+		arr__ = horarios_diarios[i];
+		arr__ = ord_arr(arr__);
+		var _html_dias = "";
+		for (var iqq = 0; iqq < arr__.length; iqq++) {
+			var namee__ = arr__[iqq]["namedoc"].split(" ");
+			_html_dias = _html_dias + 
+				"<p onclick='call_reg_cita(" +
+					'"' +
+					arr_diass[a] +
+					'"' +
+					"," +
+					arr__[iqq]["doc_ide"] +
+					")' class='doc_p' title='" +
+					arr__[iqq]["namedoc"] +
+					" " +
+					//arr__[iqq]["Horas_" + (_ordenado[a]).toLowerCase()] +
+					"' style='background-color: #"+arr__[iqq]["color"]+";'><i class='fa fa-user-md'></i>  Dr." +
+					namee__[0].substr(0, 10).toUpperCase() +"<br><span style='font-size:9px;font-weight:bold;color:#3e3e3e;'>"+arr__[iqq]["horario"]+"<br></p>";
+		}
+		a++;
+		_ordenado_html.push(_html_dias);
+	}
+
+	var a = 0;
+	__fecha_hoy = new Date();
+	$(".card > .bg-gradient-info").each(function () {
+		var __today = __fecha_hoy.getDate();
+		$(this).html((_ordenado[a]).slice(0, 6) + " / " + __today);
+		a++;
+		//$(this).html((_ordenado[a]));a++;
+		__fecha_hoy = __fecha_hoy.setDate(__fecha_hoy.getDate() + 1);
+		__fecha_hoy = new Date(__fecha_hoy);
+	});
+
+	var a = 0;
+	$(".cont_day").each(function () {
+		$(this).append(_ordenado_html[a]);
+		a++;
+	});
+}
+
+function ord_arr(items){
+	items.sort(function (a, b) {
+		if (a.hora_ordenable > b.hora_ordenable) {
+		return 1;
+		}
+		if (a.hora_ordenable < b.hora_ordenable) {
+		return -1;
+		}
+		// a must be equal to b
+		return 0;
+  	});
+  	return items;
+}
+
+function Reset_HorariosAAAAAAAA() {
+	day_count = 0;
 	fecha_hoy = new Date();
 	var _ordenado = new Array();
 	var __today = fecha_hoy.getDay();
@@ -376,22 +475,24 @@ function Reset_Horarios() {
 		__fecha_hoy = __fecha_hoy.setDate(__fecha_hoy.getDate() + 1);
 		__fecha_hoy = new Date(__fecha_hoy);
 	});
+	
 	var a = 0;
-	ffffecha_hoy = new Date();
+	//ffffecha_hoy = new Date();
 	//ffffecha_hoy = (ffffecha_hoy).setDate(ffffecha_hoy.getDate() - 1);
 	$(".cont_day").each(function () {
 		$(this).html("");
 		for (var i = 0; i < arr_doctors.length; i++) {
 			if (arr_doctors[i][_ordenado[a].toLowerCase()] != 0) {
 				var namee__ = arr_doctors[i]["nombre"].split(" ");
-				ffffecha_hoy = new Date(ffffecha_hoy);
-				var todayDate = ffffecha_hoy.toISOString().slice(0, 10);
+				//ffffecha_hoy = new Date(ffffecha_hoy);
+				//var todayDate = ffffecha_hoy.toISOString().slice(0, 10);
 				//console.log(arr_doctors[i]["nombre"] + " " + "Horas_" + _ordenado[a].toLowerCase());
-				//console.log(arr_doctors[i]);
+				//console.log(arr_diass[day_count]);
+				//console.log(todayDate);
 				$(this).append(
 					"<p onclick='call_reg_cita(" +
 						'"' +
-						todayDate +
+						arr_diass[day_count] +
 						'"' +
 						"," +
 						arr_doctors[i]["codigo_doctor"] +
@@ -407,8 +508,9 @@ function Reset_Horarios() {
 				);
 			}
 		}
-		ffffecha_hoy = ffffecha_hoy.setDate(ffffecha_hoy.getDate() + 1);
+		//ffffecha_hoy = ffffecha_hoy.setDate(ffffecha_hoy.getDate() + 1);
 		a++;
+		day_count++;
 	});
 }
 

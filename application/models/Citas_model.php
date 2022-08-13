@@ -51,7 +51,8 @@ class Citas_model extends CI_model {
         $this->db->from("citas c");
         //$this->db->join("pacientes p", "c.paciente = p.documento");
         $this->db->join("doctores d", "c.doctor = d.codigo_doctor");
-        $this->db->where("c.estado like 'Pendiente' || c.estado like 'Confirmado' ");
+        $this->db->where("c.estado like 'Pendiente'");
+        //$this->db->where("c.estado like 'Pendiente' || c.estado like 'Confirmado' ");
         $this->db->order_by("c.fecha ", "DESC");
         $result = $this->db->get();
         return $result;

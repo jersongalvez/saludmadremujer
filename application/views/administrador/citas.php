@@ -147,6 +147,7 @@
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Documento - Nombre</th>
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Telefono</th>
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Medico</th>
+                                    <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Observacion</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -171,28 +172,28 @@
                                        <td class="text-xs text-dark mb-0 text-info"><?php echo  "S/C;" ?></td>
                                        <?php } ?>
                                        <td class="text-xs text-dark mb-0">
-                                       <?php 
-                                          $firstDate  = strtotime(date("Y-m-d"));
-                                          $secondDate = strtotime($citas->fecha);
-                                          $intvl = (($secondDate-$firstDate)/3600)/24;
-                                          if($intvl==0){
-                                             echo " - <strong>Hoy</strong> a las <strong>".$citas->hora."</strong>";
-                                          }else if($intvl==1){
-                                             echo " - <strong>Mañana</strong> a las <strong>".$citas->hora."</strong>";
-                                          }else if($intvl>1){
-                                             echo " - En ".$intvl." días a las <strong>".$citas->hora."</strong>";
-                                          }else if($intvl==(-1)){
-                                             echo " - Ayer a las <strong>".$citas->hora."</strong>";
-                                          }else if($intvl<(-1)){
-                                             echo " - Hace ".($intvl*-1)." días a las <strong>".$citas->hora."</strong>";
-                                          }
-                                       ?>
+                                          <?php 
+                                             $firstDate  = strtotime(date("Y-m-d"));
+                                             $secondDate = strtotime($citas->fecha);
+                                             $intvl = (($secondDate-$firstDate)/3600)/24;
+                                             if($intvl==0){
+                                                echo " - <strong>Hoy</strong> a las <strong>".$citas->hora."</strong>";
+                                             }else if($intvl==1){
+                                                echo " - <strong>Mañana</strong> a las <strong>".$citas->hora."</strong>";
+                                             }else if($intvl>1){
+                                                echo " - En ".$intvl." días a las <strong>".$citas->hora."</strong>";
+                                             }else if($intvl==(-1)){
+                                                echo " - Ayer a las <strong>".$citas->hora."</strong>";
+                                             }else if($intvl<(-1)){
+                                                echo " - Hace ".($intvl*-1)." días a las <strong>".$citas->hora."</strong>";
+                                             }
+                                          ?>
                                        </td>
                                        <td class="text-xs text-dark mb-0"><?php echo  $citas->date_cita; ?></td>
-
                                        <td class="text-xs text-dark mb-0"><?php echo  "<strong>".$citas->documento."</strong>"." - ".$citas->nombre; ?></td>
                                        <td class="text-xs text-dark mb-0"><?php echo  "<strong>".$citas->telefono."</strong>"; ?></td>
                                        <td class="text-xs text-dark mb-0"><?php echo  $citas->doctor; ?></td>
+                                       <td class="text-xs text-dark mb-0"><?php echo  $citas->comentarios; ?></td>
                                     </tr>
                                  <?php } ?>
                               </tbody>
@@ -216,17 +217,17 @@
                   "> Doctores y Horarios Disponibles</h5>        
                   <style>
                     .doc_p{
-                      font-weight: bold;
-                      margin: 3px 2px;
-                      padding: 2px 5px;
-                      background-color: #128eef;
-                      color: white;
-                      font-size: 10px;
-                      border-radius: 6px;
-                      cursor:pointer;
-                      transition-duration: 0.9s;
-                      border: 1px solid #128eef00;
-                      text-align: left;
+                     font-weight: bold;
+                     margin: 3px 2px;
+                     padding: 10px 4px;
+                     color: #ffffff;
+                     font-size: 10px;
+                     border-radius: 2px;
+                     cursor: pointer;
+                     transition-duration: 0.9s;
+                     border: 1px solid #128eef00;
+                     text-align: center;
+                     text-shadow: 1px 1px #8f8f8f;
                     }
                     .doc_p:hover{
                       color: #343434;
@@ -582,6 +583,9 @@
             Reset_Horarios();
           },1500);
         });
-      var arr_doctors = <?php echo json_encode($doctor->result()); ?>;</script>
+      var arr_doctors = <?php echo json_encode($doctor->result()); ?>;
+      var arr_diass = <?php echo json_encode($dias); ?>;
+      var horarios_diarios = <?php echo json_encode($horarios_diarios); ?>;
+      </script>
    </body>
 </html>
