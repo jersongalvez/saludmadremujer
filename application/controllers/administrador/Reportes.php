@@ -35,11 +35,10 @@ class Reportes extends Admin_Controller {
 		$fecha2 = $this->input->post("fecha2");
 		$this->load->library("pdf");
         $pdfAct = new Pdf();
-		$gastos = $this->Reportes_model->reporteGastos($fecha1, $fecha2);
+		$gastos = $this->Reportes_model->reporteGastos($fecha1, $fecha2);//var_dump($gastos);
 		$totales = $this->Reportes_model->getTotalGastos($fecha1, $fecha2);
 		$data = ["gasto" => $gastos, "total" => $totales];
 		$this->load->view('administrador/pdfreportegastos', $data);
-
 	}
 
 	public function reporteLaboratorio() {
@@ -52,4 +51,43 @@ class Reportes extends Admin_Controller {
 		$data = ["laboratorio" => $laboratorios, "total" => $totales];
 		$this->load->view('administrador/pdfreportelaboratorio', $data);
 	}
+
+	public function reporteGlobal() {
+		$fecha1 = $this->input->post("fecha_global_1");
+		$fecha2 = $this->input->post("fecha_global_2");
+		$gastos = $this->Reportes_model->reporteGastosGLOBAL($fecha1, $fecha2);//var_dump($gastos->result());
+		$ingresos_comision = $this->Reportes_model->reporteComisionDiarioGLOBAL($fecha1, $fecha2);//var_dump($ingresos_comision->result());
+		$laboratorios = $this->Reportes_model->reporteLaboratorioGLOBAL($fecha1, $fecha2);//var_dump($laboratorios->result());
+		//$reportes1 = $this->Reportes_model->reporteComisionDiario($doctor, $fecha);
+		//$reportes2 = $this->Reportes_model->getTotalComisionDiario($doctor, $fecha);
+		$nombre_file = "REPORTE DE GLOBAL - ".$fecha1." - ".$fecha2." - ".date("h-i-s A");
+		$__data_ = [
+			"nombre_file" => $nombre_file,
+			"fecha1" => $fecha1,
+			"fecha2" => $fecha2,
+			"gastos" => $gastos->result(),
+			"ingresos_comision" => $ingresos_comision->result(),
+			"laboratorios" => $laboratorios->result()
+		];
+        $ruta = base_url()."PHPExcel/Examples/Format_CPE_COMPRAS.php";//var_dump(getcwd());
+		$data_json = json_encode($__data_);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $ruta);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_USERPWD, "admin:admin");
+		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$respuesta  = curl_exec($ch);
+		curl_close($ch);
+		$response = json_decode($respuesta, true);
+
+		$data = [
+			"sms" => $nombre_file,
+			"acction" => 1
+		];
+		echo json_encode($data);
+	}
+	
 }

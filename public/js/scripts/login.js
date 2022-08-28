@@ -42,6 +42,7 @@ $("#FormLOG").keypress(function (e) {
 });
 $("#FormLOG").submit(function (event) {
 	event.preventDefault();
+  Suubtmit();
 });
 function Suubtmit() {
   var correo = $("#correo").val(),

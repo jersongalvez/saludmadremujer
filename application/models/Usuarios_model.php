@@ -7,6 +7,13 @@ class Usuarios_model extends CI_model {
 		$this->load->model("Generic_model");
 	}
 
+    public function getAllUsers() {
+        $this->db->select("nombre,apellido,codigo_usuario");
+        $this->db->from("usuarios");
+        $this->db->where("estado", "Activo");
+        $result = $this->db->get();
+        return $result;
+    }
 
     public function getAdministtradores() {
         $this->db->select("*");

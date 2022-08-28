@@ -97,7 +97,7 @@ class Atencion_model extends CI_model {
         $this->db->join("doctores m", "a.medico = m.codigo_doctor");
         $this->db->join("especialidades e", "a.especialidad = e.codigo_especialidad");
         $this->db->where("a.estado", "Consulta");
-        $this->db->where("a.fecha", date("Y-m-d"));
+        //$this->db->where("a.fecha", date("Y-m-d"));
         $this->db->where("a.medico", $this->session->userdata("codigo"));
         $this->db->order_by("codigo_atencion", "asc");
         //$this->db->group_by('a.paciente');

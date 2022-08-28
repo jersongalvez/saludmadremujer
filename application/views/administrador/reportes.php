@@ -133,13 +133,13 @@
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-sm-6">
+                     <div class="col-sm-7">
                         <div class="card">
                            <div class="card-body">
-                              <h5 class="card-title">Reporte de cierre de caja</h5>
+                              <h6 class="card-title">Reporte de Atenciones Doctores</h6>
                               <form target="blank" action="<?php echo base_url(); ?>administracion/reportediario" method="POST">
                                  <div class="row">
-                                    <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-5" style="margin-bottom:10px">
                                        <select name="doctor" class="form-control">
                                           <option value="">Seleccione una opcion</option>
                                           <?php foreach($doctor->result() as $doctores){ ?>
@@ -148,67 +148,84 @@
                                           <option value="all">Reporte Ingresos y Gastos</option>
                                        </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                        <input type="date" class="form-control" name="fecha" value="<?php echo date("Y-m-d"); ?>">
                                     </div>
-                                    <div class="col-md-4">
-                                     <input type="submit" class="btn btn-primary btn-sm" value="Generar" style="margin-top:5px">
+                                    <div class="col-md-2">
+                                       <button type="submit" class="btn btn-primary btn-block"  title="Descargar PDF"> <i class="fa fa-download"></i> </button>
                                     </div>
+                                 </div>
+                              </form>
+                              <hr>
+                              <h6 class="card-title">Reporte de gastos</h6>
+                              <form target="blank" action="<?php echo base_url(); ?>administracion/reportegastos" method="POST">
+                                 <div class="row">
+                                    <div class="col-md-5">
+                                       <div class="form-group">
+                                          <label for="">Desde</label>
+                                          <input type="date" name="fecha1" class="form-control">
+                                       </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                       <div class="form-group">
+                                          <label for="">Hasta</label>
+                                          <input type="date" name="fecha2" class="form-control">
+                                       </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                       <label for=""><br></label>
+                                       <button type="submit" class="btn btn-primary btn-block"  title="Descargar PDF"> <i class="fa fa-download"></i> </button>
+                                    </div>
+                                 </div>
+                              </form>
+                              <hr>
+                              <h5 class="card-title">Reporte Cierre de CAJA <span style="font-size:16px">(Ingresos-Gastos)</span></h5>
+                              <form id="reporteglobal" >
+                                 <div class="row">
+                                    <div class="col-md-4">
+                                       <div class="form-group">
+                                          <label for="">Desde</label>
+                                          <input type="date" name="fecha_global_1" class="form-control">
+                                       </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                       <div class="form-group">
+                                          <label for="">Hasta</label>
+                                          <input type="date" name="fecha_global_2" class="form-control">
+                                       </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                       <label for=""> </label>
+                                       <button type="submit" class="btn btn-primary btn-block"  title="Descargar PDF"> <i class="fa fa-download"></i> </button>
+                                    </div>
+                                    
+                                    
                                  </div>
                               </form>
                            </div>
                         </div>
                      </div>
-                     <div class="col-sm-6">
+                     <div class="col-sm-5">
                         <div class="card">
                            <form target="blank" action="<?php echo base_url(); ?>administracion/reportelaboratorio" method="POST">
                               <div class="card-body">
                                  <h5 class="card-title">Reporte de laboratorio</h5>
                                  <div class="row">
-                                    <div class="col-md-12"  style="margin-bottom:10px">
+                                    <div class="col-md-7"  style="margin-bottom:10px">
                                        <input type="text" class="form-control" name="usuario" value="<?php echo $this->session->userdata("nombre"); ?>" readonly>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                        <input type="date" name="fecha" class="form-control"> 
                                     </div>
                                     <div class="col-md-6" >
-                                      <input type="submit" class="btn btn-primary btn-sm" value="Generar" style="margin-top:5px">
+                                       <button type="submit" style="width: 100%;" class="btn btn-primary btn-block"> Generar <i class="fa fa-download"></i> </button>
                                     </div>
 
                                  </div>
                                  <br>
                               </div>
                            </form>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-sm-6">
-                        <div class="card">
-                           <div class="card-body">
-                              <h5 class="card-title">Reporte de gastos</h5>
-                              <form target="blank" action="<?php echo base_url(); ?>administracion/reportegastos" method="POST">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="form-group">
-                                          <label for="">Desde</label>
-                                          <input type="date" name="fecha1" class="form-control">
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="form-group">
-                                          <label for="">Hasta</label>
-                                          <input type="date" name="fecha2" class="form-control">
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <input type="submit" class="btn btn-primary btn-sm" value="Generar"></a>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-sm-6">
-                        <div class="card">
+                           
                            <div class="card-body">
                               <h5 class="card-title">Reporte de citas listado dia a dia</h5>
                               <label for="">Seleccione un doctor o ver todos para ver el reporte</label>
@@ -220,7 +237,10 @@
                                  <?php } ?>
                               </select>
                               <br>
-                              <a href="#" class="btn btn-primary btn-sm">Generar</a>
+                              
+                              <div class="col-md-6" >
+                                 <button type="submit" style="width: 100%;" class="btn btn-primary btn-block"> Generar <i class="fa fa-download"></i> </button>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -234,6 +254,6 @@
       </main>
       <?php require_once("componentes/personalizar.php"); ?>
       <?php require_once("componentes/scripts.php"); ?>
-      <script src="<?php echo base_url(); ?>public/js/scripts/atencion.js"></script>
+      <script src="<?php echo base_url(); ?>public/js/scripts/reportes.js"></script>
    </body>
 </html>

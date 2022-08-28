@@ -25,13 +25,22 @@ class Citas_model extends CI_model {
         $result = $this->db->get();
         return $result->row();
     }
-
+    public function getCitasDoc($id) {
+        $queryTot = $this->db->query("SET lc_time_names = 'es_ES'");
+       $this->db->select("c.*,d.nombre as doctor,DATE_FORMAT(fecha,'%d de %M') as date_cita ");
+       $this->db->from("citas c");
+       $this->db->join("doctores d", "c.doctor = d.codigo_doctor");
+       //$this->db->where("c.estado like 'Pendiente'");
+       $this->db->where("(c.estado like 'Pendiente' || c.estado like 'Confirmado') AND c.doctor = ".$id);
+       $this->db->order_by("c.fecha ", "DESC");
+       $result = $this->db->get();
+       return $result;
+   }
     public function getHorariosDoc($id) { 
         $this->db->select("*");
         $this->db->from("doctores");
         $this->db->where("codigo_doctor", $id);
         $HorariosDoc = $this->db->get();
-        //return $result->row();
         return $HorariosDoc;
     }
 
@@ -40,6 +49,7 @@ class Citas_model extends CI_model {
         $this->db->from("citas");
         $this->db->where("fecha", $fecha);
         $this->db->where("doctor", $doctor);
+        $this->db->where("estado != 'Cancelado'");
         $result = $this->db->get();
         //return $result->row();
         return $result;
@@ -51,8 +61,8 @@ class Citas_model extends CI_model {
         $this->db->from("citas c");
         //$this->db->join("pacientes p", "c.paciente = p.documento");
         $this->db->join("doctores d", "c.doctor = d.codigo_doctor");
-        $this->db->where("c.estado like 'Pendiente'");
-        //$this->db->where("c.estado like 'Pendiente' || c.estado like 'Confirmado' ");
+        //$this->db->where("c.estado like 'Pendiente'");
+        $this->db->where("c.estado like 'Pendiente' || c.estado like 'Confirmado' ");// Importante: Tiene que ser asi para despues ponerlos como TRATADOS, y desaparescan de todos lados, menos de los horarios libres
         $this->db->order_by("c.fecha ", "DESC");
         $result = $this->db->get();
         return $result;

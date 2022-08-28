@@ -166,7 +166,7 @@
                   <div class="col-md-2">
                      <div class="form-group input-group-sm">
                         <label>Fecha</label>
-                        <input required type="text" class="form-control" value="<?php echo date("d-m-Y"); ?>" id="fecha" readonly>
+                        <input required type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>" id="fecha" readonly>
                      </div>
                   </div>
                </div>

@@ -336,7 +336,6 @@
                                       </div>
                                     </div>
                           </div>
-
                           <div class="row">
                               <div class="col-md-6">
                                 <h5 class="mt-2">TOTAL</h5>
@@ -347,9 +346,6 @@
                           </div>
                         </div>
                       </div>
-
-
-
                   </div>
                </div>
                <div class="modal-footer">

@@ -56,7 +56,7 @@ function VAL_Search_DNI() {
             method: "GET",
             success: function (data) {
               data = data.data;
-			        $("#nombre").val(data.nombres +" "+data.apellido_paterno +" "+data.apellido_materno);
+			    $("#nombre").val(data.apellido_paterno +" "+data.apellido_materno+" "+data.nombres);
             },
             error: function () {
               $("body").overhang({
@@ -345,6 +345,7 @@ var dias = [
 	"Viernes",
 	"Sabado",
 ];
+
 var __colores = [
 	"#5bd5f5",
 	"#f77a92",
@@ -393,7 +394,7 @@ function Reset_Horarios() {
 					" " +
 					//arr__[iqq]["Horas_" + (_ordenado[a]).toLowerCase()] +
 					"' style='background-color: #"+arr__[iqq]["color"]+";'><i class='fa fa-user-md'></i>  Dr." +
-					namee__[0].substr(0, 10).toUpperCase() +"<br><span style='font-size:9px;font-weight:bold;color:#3e3e3e;'>"+arr__[iqq]["horario"]+"<br></p>";
+					namee__[0].substr(0, 10).toUpperCase() +"<br><span style='font-size:9px;font-weight:bold;color:#8f8f8f;'>"+arr__[iqq]["horario"]+"<br></p>";
 		}
 		a++;
 		_ordenado_html.push(_html_dias);

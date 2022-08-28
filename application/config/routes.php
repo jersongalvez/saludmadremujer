@@ -99,7 +99,10 @@ $route["administracion/crearcolposcopia"] = "administrador/colposcopia/crearcolp
 $route["administraciopn/pdfcolposcopia/(:num)"] = "administrador/colposcopia/crearpdfcolposcopia";
 
 //GASTOS
-$route["administracion/creargasto"] = "administrador/financiero/creargastos";
+$route["administracion/formgastocpe"] = "administrador/gastos/formgastocpe";
+$route["buscarproveedor"] = "administrador/gastos/searchproveedor";
+$route["administracion/loadcpegasto"] = "administrador/gastos/loadcpegasto";
+
 //FACTURA ELECTRONICA
 $route["administracion/facturaelectronica"] = "administrador/financiero/facturaElectronica";
 
@@ -108,6 +111,7 @@ $route["administracion/facturaelectronica"] = "administrador/financiero/facturaE
 $route["administracion/reportediario"] = "administrador/reportes/reportecomisiondiario";
 $route["administracion/reportegastos"] = "administrador/reportes/reportegastos";
 $route["administracion/reportelaboratorio"] = "administrador/reportes/reportelaboratorio";
+$route["administracion/reporteglobal"] = "administrador/reportes/reporteglobal";
 
 //LABORATORIO
 $route["countlaboratorio"] = "administrador/laboratorio/Countlaboratorioid";

@@ -6,6 +6,7 @@ class Atencion extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
 
+		$this->load->model("Citas_model");
 		$this->load->model("Atencion_model");
 		$this->load->model("Doctores_model");
 		$this->load->model("Especialidades_model");
@@ -24,8 +25,11 @@ class Atencion extends Admin_Controller {
 
 	public function atencionMedicos() {
 		$pacientes = $this->Atencion_model->getAtencionesDoctor();
-		//var_dump($pacientes->result());
+		//$cita_doc = $this->Citas_model->getCitas();
+		$cita_doc = $this->Citas_model->getCitasDoc($this->session->userdata("codigo"));
+		//var_dump($cita_doc->result());
 		$data = [
+			"cita_doc" => $cita_doc, 
 			"paciente" => $pacientes 
 		];
 		$this->load->view('administrador/doctoresatencion', $data);
