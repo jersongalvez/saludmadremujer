@@ -24,7 +24,7 @@ $pdf->Cell(50,6,'', '', 0,'L', false );
 $pdf->Cell(60,6,'INFORME DIARIO DE CIERRE DE CAJA', '', 0,'L', false );
 $pdf->SetFont('Times','B',9);
 $pdf->Ln(14);
-$pdf->Cell(60,6,'FECHA', 1, 0,'C', false );
+$pdf->Cell(60,6,'FECHA Referencia', 1, 0,'C', false );
 $pdf->Cell(134,6,'RESPONSABLE', 1, 0,'L', false );
 
 $pdf->SetFont('Times','',9);
@@ -39,45 +39,52 @@ $pdf->SetFont('Times','B',9);
 $pdf->Ln(8);
 $pdf->Cell(42,6,'PACIENTE', 1, 0,'L', false );
 $pdf->Cell(10,6,'No', 1, 0,'L', false );
-$pdf->Cell(49,6,'MEDICO', 1, 0,'L', false );
+$pdf->Cell(60,6,'MEDICO', 1, 0,'L', false );
 $pdf->Cell(35,6,'ESPECIALIDAD', 1, 0,'L', false );
-$pdf->Cell(20,6,'PAGO', 1, 0,'L', false );
+//$pdf->Cell(20,6,'PAGO', 1, 0,'L', false );
 $pdf->Cell(20,6,'INGRESOS', 1, 0,'L', false );
-$pdf->Cell(18,6,'EGRESOS', 1, 0,'L', false );
+//$pdf->Cell(18,6,'EGRESOS', 1, 0,'L', false );
+
 foreach ($reporte1->result() as $resportes1){
-$pdf->SetFont('Times','',9);
-$pdf->Ln(6);
-$pdf->Cell(42,6,$resportes1->apellido, 1, 0,'L', false );
-$pdf->Cell(10,6,$resportes1->codigo_pago, 1, 0,'L', false );
-$pdf->Cell(49,6,utf8_decode($resportes1->medico), 1, 0,'L', false );
-$pdf->Cell(35,6,utf8_decode($resportes1->descripcion), 1, 0,'L', false );
-$pdf->Cell(20,6,$resportes1->tipo_deposito, 1, 0,'L', false );
-$pdf->Cell(20,6,$resportes1->total, 1, 0,'L', false );
-$pdf->Cell(18,6,$resportes1->comision, 1, 0,'L', false );
-$pdf->SetFont('Times','B',9);
+    $pdf->SetFont('Times','',9);
+    $pdf->Ln(6);
+    $pdf->Cell(42,6,$resportes1->apellido, 1, 0,'L', false );
+    $pdf->Cell(10,6,$resportes1->codigo_pago, 1, 0,'L', false );
+    $pdf->Cell(60,6,utf8_decode($resportes1->medico), 1, 0,'L', false );
+    $pdf->Cell(35,6,utf8_decode($resportes1->descripcion), 1, 0,'L', false );
+    //$pdf->Cell(20,6,$resportes1->tipo_deposito, 1, 0,'L', false );
+    //$pdf->Cell(20,6,$resportes1->total, 1, 0,'L', false );
+    $pdf->Cell(20,6,$resportes1->comision, 1, 0,'L', false );
+    $pdf->SetFont('Times','B',9);
 }
-$pdf->Ln(11);
-$pdf->Cell(54,6,'', 0,'', false );
-$pdf->Cell(82,6,'', 0,'', false );
-$pdf->Cell(20,6,'TOTAL', 1, 0,'', false );
-$pdf->Cell(38,6,$reportes2->total, 1, 0,'', false );
-$pdf->SetFont('Times','b',9);
+
+//$pdf->Ln(11);
+//$pdf->Cell(54,6,'', 0,'', false );
+//$pdf->Cell(82,6,'', 0,'', false );
+//$pdf->Cell(20,6,'TOTAL', 1, 0,'', false );
+//$pdf->Cell(38,6,$reportes2->total, 1, 0,'', false );
+//$pdf->SetFont('Times','b',9);
 
 $pdf->Ln(6);
-$pdf->Cell(54,6,'', 0,'', false );
-$pdf->Cell(82,6,'', 0,'', false );
-$pdf->Cell(20,6,'EGRESOS', 1, 0,'', false );
-$pdf->Cell(38,6,$reportes2->comision, 1, 0,'', false );
+$pdf->Cell(42,6,'', 0,'', false );
+$pdf->Cell(10,6,'', 0,'', false );
+$pdf->Cell(60,6,'', 0,'', false );
+$pdf->Cell(35,6,'Total Doctor', 1, 0,'', false );
+$pdf->Cell(20,6,$reportes2->comision, 1, 0,'', false );
 $pdf->SetFont('Times','B',9);
 
-$caja = $reportes2->total - $reportes2->comision;
+//$caja = $reportes2->total - $reportes2->comision;
+//$pdf->Ln(6);
+//
+//$pdf->Cell(54,6,'', 0,'', false );
+//$pdf->Cell(82,6,'', 0,'', false );
+//$pdf->Cell(20,6,'CAJA', 1, 0,'', false );
+//$pdf->Cell(38,6,$caja, 1, 0,'', false );
+//$pdf->SetFont('Times','',9);
+//$pdf->Ln(5);
 $pdf->Ln(6);
-$pdf->Cell(54,6,'', 0,'', false );
-$pdf->Cell(82,6,'', 0,'', false );
-$pdf->Cell(20,6,'CAJA', 1, 0,'', false );
-$pdf->Cell(38,6,$caja, 1, 0,'', false );
-$pdf->SetFont('Times','',9);
-
+$pdf->Cell(30,6,'Impresion', 1, 0,'C', false );
+$pdf->Cell(30,6,date('H:i A d-m-Y'), 1, 0,'C', false );
 
 
 $pdf->Output();

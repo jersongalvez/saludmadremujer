@@ -8,7 +8,6 @@
       <?php require_once("componentes/head.php"); ?>
    </head>
    <body class="g-sidenav-show bg-gray-100">
-
       <div class="min-height-300 bg-default position-absolute w-100"></div>
       <?php require_once("componentes/menu.php"); ?>
       <main class="main-content position-relative border-radius-lg">
@@ -141,12 +140,13 @@
                            <table class="table align-items-center table-borderless mb-0" id="table-citas">
                               <thead>
                                  <tr>
-                                    <th colspan="2" class="text-uppercase text-dark text-xs font-weight-bolder opacity-12"><a style="width: 100%;" class="btn  bg-gradient-danger btn-xs" onclick="$('#AddCITA').trigger('reset');$('#Cont_Horas').empty();$('#Cont_Horas').empty();" data-bs-toggle="modal" href="#AgregarPaciente" role="button">Agregar CITA  <i class="fas fa-plus"></i> </a></th>
+                                    <th colspan="2" class="text-uppercase text-dark text-xs font-weight-bolder opacity-12"><a style="width: 100%;" class="btn  bg-gradient-danger btn-xs" onclick="$('#AddCITA').trigger('reset');$('#Cont_Horas').empty();$('#Cont_Horas').empty();" data-bs-toggle="modal" href="#AgregarPaciente" role="button">Agregar CITA  <i class="fas fa-plus"></i> </a></th>
                                     <th class="text-dark text-xs font-weight-bolder opacity-12">Para <i class="fa fa-clock"></i> </th>
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Fecha</th>
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Documento - Nombre</th>
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Telefono</th>
                                     <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Medico</th>
+                                    <th class="text-uppercase text-dark text-xs font-weight-bolder opacity-12">Observacion</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -171,28 +171,28 @@
                                     <td class="text-xs text-dark mb-0 text-info"><?php echo  "S/C;" ?></td>
                                     <?php } ?>
                                     <td class="text-xs text-dark mb-0">
-                                      <?php 
-                                        $firstDate  = strtotime(date("Y-m-d"));
-                                        $secondDate = strtotime($citas->fecha);
-                                        $intvl = (($secondDate-$firstDate)/3600)/24;
-                                        if($intvl==0){
-                                          echo " - <strong>Hoy</strong> a las <strong>".$citas->hora."</strong>";
-                                        }else if($intvl==1){
-                                          echo " - <strong>Mañana</strong> a las <strong>".$citas->hora."</strong>";
-                                        }else if($intvl>1){
-                                          echo " - En ".$intvl." días a las <strong>".$citas->hora."</strong>";
-                                        }else if($intvl==(-1)){
-                                          echo " - Ayer a las <strong>".$citas->hora."</strong>";
-                                        }else if($intvl<(-1)){
-                                          echo " - Hace ".($intvl*-1)." días a las <strong>".$citas->hora."</strong>";
-                                        }
-                                      ?>
+                                       <?php 
+                                          $firstDate  = strtotime(date("Y-m-d"));
+                                          $secondDate = strtotime($citas->fecha);
+                                          $intvl = (($secondDate-$firstDate)/3600)/24;
+                                          if($intvl==0){
+                                             echo " - <strong>Hoy</strong> a las <strong>".$citas->hora."</strong>";
+                                          }else if($intvl==1){
+                                             echo " - <strong>Mañana</strong> a las <strong>".$citas->hora."</strong>";
+                                          }else if($intvl>1){
+                                             echo " - En ".$intvl." días a las <strong>".$citas->hora."</strong>";
+                                          }else if($intvl==(-1)){
+                                             echo " - Ayer a las <strong>".$citas->hora."</strong>";
+                                          }else if($intvl<(-1)){
+                                             echo " - Hace ".($intvl*-1)." días a las <strong>".$citas->hora."</strong>";
+                                          }
+                                          ?>
                                     </td>
-                                    <td class="text-xs text-dark mb-0"><?php echo  $citas->dateeea; ?></td>
-
-                                    <td class="text-xs text-dark mb-0"><?php echo  "<strong>".$citas->documento."</strong>"." - ".$citas->apellido." ".$citas->nombre; ?></td>
+                                    <td class="text-xs text-dark mb-0"><?php echo  $citas->date_cita; ?></td>
+                                    <td class="text-xs text-dark mb-0"><?php echo  "<strong>".$citas->documento."</strong>"." - ".$citas->nombre; ?></td>
                                     <td class="text-xs text-dark mb-0"><?php echo  "<strong>".$citas->telefono."</strong>"; ?></td>
                                     <td class="text-xs text-dark mb-0"><?php echo  $citas->doctor; ?></td>
+                                    <td class="text-xs text-dark mb-0"><?php echo  $citas->comentarios; ?></td>
                                  </tr>
                                  <?php } ?>
                               </tbody>
@@ -203,59 +203,54 @@
                   </div>
                </div>
             </div>
-
-              <div class="col-md-12">
-                <div class="container-fluid py-2" >
-                <div class="row" style="padding: 5px;background: #b8bbbf;border-radius: 10px;">
-                  <h5 style="
-                      margin:0px;
-                      text-align: center;
-                      color: white;
-                      text-shadow: 2px 0px 0px #6c6868;
-                      text-decoration: underline;
-                  "> Doctores y Horarios Disponibles</h5>        
-                  <style>
-                    .doc_p{
-                      font-weight: bold;
-                      margin: 3px 2px;
-                      padding: 2px 5px;
-                      background-color: #128eef;
-                      color: white;
-                      font-size: 10px;
-                      border-radius: 6px;
-                      cursor:pointer;
-                      transition-duration: 0.9s;
-                      border: 1px solid #128eef00;
-                      text-align: left;
-                    }
-                    .doc_p:hover{
-                      color: #343434;
-                      background: white !important;
-                      border: 1px solid #1171ef;
-                      text-align: center;
-                    } 
-                    .card___cont{
-                      transition-duration: 0.4s;
-                      margin-top:25px;
-                      padding-bottom:15px !important;
-                      background-image: linear-gradient(272deg, #b9d7ff 0%, #ffffff 0%) !important;
-                    }
-                    
-                    .card___cont:hover{
-                      margin-top:15px;
-                      margin-bottom:10px;
-                      background-image: linear-gradient(272deg, #cfe3ff 0%, #ffffff 70%) !important;
-                    }
-
-                    .btn_clock{
+            <div class="col-md-12">
+               <div class="container-fluid py-2" >
+                  <div class="row" style="padding: 5px;background: #b8bbbf;border-radius: 10px;">
+                     <h5 style="
+                        margin:0px;
+                        text-align: center;
+                        color: white;
+                        text-shadow: 2px 0px 0px #6c6868;
+                        text-decoration: underline;
+                        "> Doctores y Horarios Disponibles</h5>
+                     <style>
+                        .doc_p{
+                        font-weight: bold;
+                        margin: 3px 2px;
+                        padding: 10px 4px;
+                        color: #3e3e3e;
+                        font-size: 10px;
+                        border-radius: 2px;
+                        cursor: pointer;
+                        transition-duration: 0.9s;
+                        border: 1px solid #128eef00;
+                        text-align: center;
+                        }
+                        .doc_p:hover{
+                        color: #343434;
+                        background: white !important;
+                        border: 1px solid #1171ef;
+                        text-align: center;
+                        } 
+                        .card___cont{
+                        transition-duration: 0.4s;
+                        margin-top:25px;
+                        padding-bottom:15px !important;
+                        background-image: linear-gradient(272deg, #b9d7ff 0%, #ffffff 0%) !important;
+                        }
+                        .card___cont:hover{
+                        margin-top:15px;
+                        margin-bottom:10px;
+                        background-image: linear-gradient(272deg, #cfe3ff 0%, #ffffff 70%) !important;
+                        }
+                        .btn_clock{
                         padding: 5px 15px;margin: 5px;
                         transition-duration: 0.7s;
-                    }
-                    .btn_clock:hover{
+                        }
+                        .btn_clock:hover{
                         background: #fb6340;
-                    }
-                </style>
-                
+                        }
+                     </style>
                      <div class="col-md-2">
                         <div class="container-fluid py-2" style="padding:2px 2px !important;">
                            <div class="row ">
@@ -268,321 +263,82 @@
                            </div>
                         </div>
                      </div>
-
-                    
-                    <div class="col-md-10">
-                      <div class="row ">
-                          <div class="col-md-2">
-                            <div class="container-fluid py-2" style="padding:2px 2px !important;">
-                                <div class="row ">
-                                  <div style="padding: 0px 3px;" class="card card___cont"><button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
-                                    <span style="font-size: 12px;text-align: center;"><strong>Mañana</strong></span><hr style="margin: 3px;"><div class="cont_day"></div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="container-fluid py-2" style="padding:2px 2px !important;">
-                                <div class="row ">
-                                  <div style="padding: 0px 3px;" class="card card___cont"><button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button><hr style="margin: 3px;"><div class="cont_day"></div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="container-fluid py-2" style="padding:2px 2px !important;">
-                                <div class="row ">
-                                  <div style="padding: 0px 3px;" class="card card___cont"><button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button><hr style="margin: 3px;"><div class="cont_day"></div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="container-fluid py-2" style="padding:2px 2px !important;">
-                                <div class="row ">
-                                  <div style="padding: 0px 3px;" class="card card___cont"><button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button><hr style="margin: 3px;"><div class="cont_day"></div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="container-fluid py-2" style="padding:2px 2px !important;">
-                                <div class="row ">
-                                  <div style="padding: 0px 3px;" class="card card___cont"><button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button><hr style="margin: 3px;"><div class="cont_day"></div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="container-fluid py-2" style="padding:2px 2px !important;">
-                                <div class="row ">
-                                  <div style="padding: 0px 3px;" class="card card___cont"><button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button><hr style="margin: 3px;"><div class="cont_day"></div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
+                     <div class="col-md-10">
+                        <div class="row ">
+                           <div class="col-md-2">
+                              <div class="container-fluid py-2" style="padding:2px 2px !important;">
+                                 <div class="row ">
+                                    <div style="padding: 0px 3px;" class="card card___cont">
+                                       <button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
+                                       <span style="font-size: 12px;text-align: center;"><strong>Mañana</strong></span>
+                                       <hr style="margin: 3px;">
+                                       <div class="cont_day"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="container-fluid py-2" style="padding:2px 2px !important;">
+                                 <div class="row ">
+                                    <div style="padding: 0px 3px;" class="card card___cont">
+                                       <button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
+                                       <hr style="margin: 3px;">
+                                       <div class="cont_day"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="container-fluid py-2" style="padding:2px 2px !important;">
+                                 <div class="row ">
+                                    <div style="padding: 0px 3px;" class="card card___cont">
+                                       <button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
+                                       <hr style="margin: 3px;">
+                                       <div class="cont_day"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="container-fluid py-2" style="padding:2px 2px !important;">
+                                 <div class="row ">
+                                    <div style="padding: 0px 3px;" class="card card___cont">
+                                       <button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
+                                       <hr style="margin: 3px;">
+                                       <div class="cont_day"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="container-fluid py-2" style="padding:2px 2px !important;">
+                                 <div class="row ">
+                                    <div style="padding: 0px 3px;" class="card card___cont">
+                                       <button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
+                                       <hr style="margin: 3px;">
+                                       <div class="cont_day"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="container-fluid py-2" style="padding:2px 2px !important;">
+                                 <div class="row ">
+                                    <div style="padding: 0px 3px;" class="card card___cont">
+                                       <button class="btn bg-gradient-info" style="padding: 5px 15px;margin:10px 0px;">-</button>
+                                       <hr style="margin: 3px;">
+                                       <div class="cont_day"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                   </div>
-                </div>
-              </div>
+               </div>
+            </div>
             <?php require_once("componentes/footer.php"); ?>
-
          </div>
-
-         <section class="time-table-section pd-top-extra" >
-            <div class="auto-container">
-                  <!-- Sec Title -->
-                  <div class="sec-title text-center">
-                     <span class="title">Disponibilidad de Nuestros Profesionales</span>
-                     <h3>Febrero</h3>
-                     <span class="divider"></span>
-                  </div>
-                  <div class="table-outer">
-                     <!-- Doctors Time Table -->
-                     <table class="doctors-time-table">
-                        <thead>
-                              <tr> 
-                                 <th>LUNES 14 </th>
-                                 <th>MARTES 15 </th>
-                                 <th>MIÉRCOLES 16 </th>
-                                 <th>JUEVES 17 </th>
-                                 <th>VIERNES 18 </th>
-                                 <th>SÁBADO 19 </th>
-                              </tr>
-                        </thead>
-
-                        <tbody>
-                              <!-- Table Row 08:00am -->
-                              <tr>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 7:00 am - 9:00 am </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 7:00 am - 9:00 am </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 7:00 am - 9:00 am </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="empty tdddd"></td>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 7:00 am - 9:00 am </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd ALVA">
-                                    <strong>DR.ALVA</strong>
-                                    <p> 9:00 am </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/d.png" alt=""></figure>
-                                          <h4 class="name">Dr. Armando Alva</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.ALVA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                              </tr>
-
-                              <!-- Table Row 10:00am -->
-                              <tr>
-                                 <td class="tdddd AQUINO">
-                                    <strong>DR.AQUINO</strong>
-                                    <p> 8:00 am - 11:00 am</p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/ggg.png" alt=""></figure>
-                                          <h4 class="name">Dr.Aquino</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.AQUINO%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="empty tdddd"></td>
-                                 <td class="tdddd AQUINO">
-                                    <strong>DR.AQUINO</strong>
-                                    <p> 8:00 am - 11:00 am</p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/ggg.png" alt=""></figure>
-                                          <h4 class="name">Dr.Aquino</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.AQUINO%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd LLATAS">
-                                    <strong>DR.LLATAS</strong>
-                                    <p> 10:00 am </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/b.png" alt=""></figure>
-                                          <h4 class="name">Dr. Santiago Llatas</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.LLATAS%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="empty tdddd"></td>
-                                 <td class="empty tdddd"></td>
-                              </tr>
-
-                              <!-- Table Row 11:00am -->
-                              <tr>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 12:00 am - 2:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 12:00 am - 2:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 12:00 am - 2:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd VIDAURRE">
-                                    <strong>DR.VIDAURRE</strong>
-                                    <p> 12:00 am - 2:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/c.png" alt=""></figure>
-                                          <h4 class="name">Dr. Oscar Vidaurre</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.VIDAURRE%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="empty tdddd"></td>
-                                 <td class="empty tdddd"></td>
-                              </tr>
-
-                              <!-- Table Row 11:30am -->
-                              <tr>
-                                 <td class="tdddd CUNIA">
-                                    <strong>DR.CUNIA</strong>
-                                    <p> 12:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/e.png" alt=""></figure>
-                                          <h4 class="name">Dra. Marleni Cunia</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.CUNIA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="tdddd AQUINO">
-                                    <strong>DR.AQUINO</strong>
-                                    <p> 3:00pm - 5:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/ggg.png" alt=""></figure>
-                                          <h4 class="name">Dr.Aquino</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.AQUINO%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="tdddd CUNIA">
-                                    <strong>DR.CUNIA</strong>
-                                    <p> 12:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/e.png" alt=""></figure>
-                                          <h4 class="name">Dra. Marleni Cunia</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.CUNIA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="empty tdddd"></td>
-                                 <td class="tdddd PAREDES">
-                                    <strong>DR.PAREDES</strong>
-                                    <p> 4:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/fff.png" alt=""></figure>
-                                          <h4 class="name">Dr.Paredes</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.PAREDES%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 <td class="empty tdddd"></td>
-                              </tr>
-
-                              <!-- Table Row 12:00am -->
-                              <tr>
-                                 <td class="tdddd LLATAS">
-                                    <strong>DR.LLATAS</strong>
-                                    <p> 4:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/b.png" alt=""></figure>
-                                          <h4 class="name">Dr. Santiago Llatas</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.LLATAS%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="tdddd ALVA">
-                                    <strong>DR.ALVA</strong>
-                                    <p> 3:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/d.png" alt=""></figure>
-                                          <h4 class="name">Dr. Armando Alva</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.ALVA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="tdddd PAREDES">
-                                    <strong>DR.PAREDES</strong>
-                                    <p> 4:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/fff.png" alt=""></figure>
-                                          <h4 class="name">Dr.Paredes</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.PAREDES%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="tdddd ALVA">
-                                    <strong>DR.ALVA</strong>
-                                    <p> 3:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/d.png" alt=""></figure>
-                                          <h4 class="name">Dr. Armando Alva</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.ALVA%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="tdddd LLATAS">
-                                    <strong>DR.LLATAS</strong>
-                                    <p> 4:00 pm </p>
-                                    <div class="doctor-info">
-                                          <figure class="thumb"><img src="images/team/b.png" alt=""></figure>
-                                          <h4 class="name">Dr. Santiago Llatas</h4>
-                                          <a href="https://api.whatsapp.com/send?phone=51943937841&text=Hola%20Clinica%20Salud%20Madre%20y%20Mujer%2C%20necesito%20reservar%20una%20cita%20con%20el%20DR.LLATAS%20%F0%9F%98%8A" class="theme-btn btn-style-one bg-tealblue"><span class="btn-title">Contáctanos <i class="fa-brands fa-whatsapp"></i></span></a>
-                                    </div>
-                                 </td>
-                                 
-                                 <td class="empty tdddd"></td>
-                              </tr>
-                        </tbody>
-                     </table>
-                  </div>
-            </div>      
-         </section>
-         
       </main>
       <?php require_once("componentes/personalizar.php"); ?>
       <!-- LARGE MODAL -->
@@ -599,10 +355,8 @@
                <div class="modal-body">
                   <div class="messageError"></div>
                   <div class="row">
-
                      <div class="col-md-1" style="opacity: 0;">
                      </div>
-
                      <div class="col-md-10">
                         <div class="row">
                            <div class="col-md-8">
@@ -616,7 +370,6 @@
                                  </select>
                               </div>
                            </div>
-                           
                            <div class="col-md-4" >
                               <div class="form-group input-group-sm">
                                  <label>Fecha</label>
@@ -628,11 +381,8 @@
                                  </div>
                               </div>
                            </div>
-
-
                            <div class="col-md-12">
                               <div class="" id="Cont_Horas" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;">
-                              
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -642,28 +392,31 @@
                                  <option value="">Seleccionar</option>
                               </select>
                            </div>
-
                         </div>
-                        
                         <div class="row">
-                           <div class="col-md-4">
+                           <div class="col-md-3">
                               <div class="form-group input-group-sm">
                                  <label>DNI Paciente</label>
                                  <div class="input-group">
-                                    <input type="number" class="form-control" id="dni" style="height: 32px;padding: 0px;" required>
+                                    <input type="text" class="form-control" id="dni" style="height: 32px;padding: 0px;" minlength="7" maxlength="11" required>
                                     <div class="input-group-append">
-                                       <button type="button" style="padding: 5px 15px;" class="btn btn-primary" id="lupa_DNI"><i class="fa fa-search"></i></button>
+                                       <button type="button" style="padding: 5px;" class="btn btn-primary" id="lupa_DNI"><i class="fa fa-search"></i></button>
                                     </div>
                                  </div>
                               </div>
                            </div>
-                           <div class="col-md-8">
+                           <div class="col-md-6">
                               <div class="form-group input-group-sm">
-                                 <label>Nombres y Apellidos Paciente</label>
+                                 <label>Apellidos y Nombres  Paciente</label>
                                  <input type="text" class="form-control" id="nombre" required>
                               </div>
                            </div>
-
+                           <div class="col-md-3">
+                              <div class="form-group input-group-sm">
+                                 <label>Celular</label>
+                                 <input type="text" class="form-control" id="telefono">
+                              </div>
+                           </div>
                            <div class="col-md-6">
                               <div class="form-group input-group-sm">
                                  <label>Estado Cita</label>
@@ -683,7 +436,6 @@
                            </div>
                         </div>
                      </div>
-                     
                      <div class="col-md-1" style="opacity: 0;">
                         <div class="form-group input-group-sm">
                            <label>statee</label>
@@ -700,13 +452,11 @@
                      </div>
                   </div>
                   <div class="col-md-1" style="display:none;">
-                        <div class="form-group input-group-sm">
-                           <label>Horario</label>
-                           <input type="number"  class="form-control" id="idee" style="height: 32px;padding: 0px;">
-                        </div>
+                     <div class="form-group input-group-sm">
+                        <label>Horario</label>
+                        <input type="number"  class="form-control" id="idee" style="height: 32px;padding: 0px;">
                      </div>
-                  
-
+                  </div>
                </div>
                <div class="modal-footer">
                   <button type="submit" class="btn btn-primary" >Guardar</button>
@@ -823,11 +573,14 @@
       <?php require_once("componentes/scripts.php"); ?>
       <script src="<?php echo base_url(); ?>public/js/scripts/citas.js"></script>
       <script>
-        $(document).ready(function() {
-          setTimeout(function() {
-            Reset_Horarios();
-          },1500);
-        });
-      var arr_doctors = <?php echo json_encode($doctor->result()); ?>;</script>
+         $(document).ready(function() {
+           setTimeout(function() {
+             Reset_Horarios();
+           },1500);
+         });
+         var arr_doctors = <?php echo json_encode($doctor->result()); ?>;
+         var arr_diass = <?php echo json_encode($dias); ?>;
+         var horarios_diarios = <?php echo json_encode($horarios_diarios); ?>;
+      </script>
    </body>
 </html>

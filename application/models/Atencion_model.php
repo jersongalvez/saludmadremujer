@@ -21,6 +21,7 @@ class Atencion_model extends CI_model {
             "medico" => $data["doctor"],
             "especialidad" => $data["especialidad"],
             "costo" => $data["costo"],
+            "orden__" => $data["orden__"],
             "cola_atencion" => $data["cola_atencion"],
             "comision" => $data["comision"],
             "estado" => "Registrado",
@@ -50,13 +51,15 @@ class Atencion_model extends CI_model {
         $this->db->insert("turnera", $datos);
     }
 
-    public function CountTurnos() {
+    public function CountTurnos($id_doc) {
         $this->db->select("count(*) as Orden");
         $this->db->from("atenciones");
+        $this->db->where("medico", $id_doc);
         $this->db->where("cola_atencion", "Si");
         $this->db->where("fecha = CURRENT_DATE()");
         $result = $this->db->get();
-        return $result->row();
+        return $result;
+        //return $result->row();
     }
 
     public function mandarTriaje($id) {
@@ -87,16 +90,17 @@ class Atencion_model extends CI_model {
     }
 
     public function getAtencionesDoctor() {
+        //$this->db->select(" a.*, m.nombre, e.descripcion");
         $this->db->select(" a.*,p.nombre as paciente,p.documento,p.apellido,p.hc,p.direccion,p.telefono, m.nombre, e.descripcion");
         $this->db->from("atenciones a");
         $this->db->join("pacientes p", "a.paciente = p.documento");
         $this->db->join("doctores m", "a.medico = m.codigo_doctor");
         $this->db->join("especialidades e", "a.especialidad = e.codigo_especialidad");
         $this->db->where("a.estado", "Consulta");
-        $this->db->where("a.fecha", date("d-m-Y"));
+        //$this->db->where("a.fecha", date("Y-m-d"));
         $this->db->where("a.medico", $this->session->userdata("codigo"));
         $this->db->order_by("codigo_atencion", "asc");
-        $this->db->group_by('a.paciente');
+        //$this->db->group_by('a.paciente');
         $result = $this->db->get();
 
         return $result;

@@ -154,30 +154,34 @@ $("#fecha_nacimiento").on("blur", function () {
 	$("#edad").val(anos);
 	$("#edad").attr("readonly", true);
 });
+/*************** API RENIEC  ***********/
+$("#dni").keyup(function (e) {//keyup se Ejecuta al levantar la soltar la tecla presionada
+  e.defaultPrevented;//defaultPrevented anula funciones por default
+  if (e.which == 13) {//valido que la tecla soltada sea 13==Tecla Enter
+	Buscar_Paciente();
+  }
+});
+$("#dni").on("onblur", function (e) {//keyup se Ejecuta al levantar la soltar la tecla presionada
+	Buscar_Paciente();
+});
 
-$("#dni").on("blur", function () {
-	var dni = $("#dni").val(),
-		url2 =
-			"https://apiperu.dev/api/dni/" +
-			dni +
-			"?api_token=" +
-			"e02a95cc4b8e0d521d447c0786af76cdb424b6a2ba25aea9f7cd9e9bc4712e86";
+function Buscar_Paciente(dni) {
+	url2 =
+		"https://apiperu.dev/api/dni/" +
+		$("#dni").val() +
+		"?api_token=" +
+		"e02a95cc4b8e0d521d447c0786af76cdb424b6a2ba25aea9f7cd9e9bc4712e86";
 	$.ajax({
 		url: url2,
 		method: "GET",
 		success: function (data) {
-			// console.log(data);
-			$("#nombre").val(data.data.nombres);
-			$("#apellido").val(
-				data.data.apellido_paterno + " " + data.data.apellido_materno
-			);
-			$("#direccion").val(data.data.direccion);
-			departamento = data.data.ubigeo[0];
-			provincia = data.data.ubigeo[1];
-			distrito = data.data.ubigeo[2];
-			$("#departamento").val(departamento).prop("selected", true);
-			$("#provincia").val(provincia).prop("selected", true);
-			$("#distrito").val(distrito).prop("selected", true);
+			response = data.data;
+			$("#nombre").val(response.nombres);
+			$("#apellido").val(response.apellido_paterno + " " + response.apellido_materno);
+			$("#direccion").val(response.direccion);
+			$("#departamento").val(response.ubigeo[0]).prop("selected", true);
+			$("#provincia").val(response.ubigeo[1]).prop("selected", true);
+			$("#distrito").val(response.ubigeo[2]).prop("selected", true);
 		},
 		error: function () {
 			$("body").overhang({
@@ -187,29 +191,42 @@ $("#dni").on("blur", function () {
 			});
 		},
 	});
-});
+}
 
-$("#documento").on("blur", function () {
-	var documento = $("#documento").val(),
-		url3 =
-			"https://apiperu.dev/api/dni/" +
-			documento +
-			"?api_token=" +
-			"e02a95cc4b8e0d521d447c0786af76cdb424b6a2ba25aea9f7cd9e9bc4712e86";
+/*************** API RENIEC  ***********/
+$("#documento").keyup(function (e) {//keyup se Ejecuta al levantar la soltar la tecla presionada
+	e.defaultPrevented;//defaultPrevented anula funciones por default
+	if (e.which == 13) {//valido que la tecla soltada sea 13==Tecla Enter
+	  Buscar_Tutor();
+	}
+  });
+  $("#documento").on("blur", function (e) {//keyup se Ejecuta al levantar la soltar la tecla presionada
+	  Buscar_Tutor();
+  });
+  
+
+function Buscar_Tutor() {
+	url2 =
+		"https://apiperu.dev/api/dni/" +
+		$("#documento").val() +
+		"?api_token=" +
+		"e02a95cc4b8e0d521d447c0786af76cdb424b6a2ba25aea9f7cd9e9bc4712e86";
 	$.ajax({
-		url: url3,
+		url: url2,
 		method: "GET",
 		success: function (data) {
-			$("#responsable").val(
-				data.data.nombres +
-					" " +
-					data.data.apellido_paterno +
-					" " +
-					data.data.apellido_materno
-			);
+			response = data.data;
+			$("#fresponsable").val(response.nombres +" "+response.apellido_paterno +" "+response.apellido_materno);
+		},
+		error: function () {
+			$("body").overhang({
+				type: "error",
+				message:
+					"Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
+			});
 		},
 	});
-});
+}
 
 url4 = baseurl + "contarconsecutivo";
 $.ajax({

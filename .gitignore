@@ -2,6 +2,7 @@
 
 application/cache/*
 application/config/*
+application/config/database.php
 
 !application/cache/index.html
 

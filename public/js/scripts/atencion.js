@@ -94,7 +94,6 @@ $(document).ready(function() {
       }
     }
 
-
     $("#crear-atencion").on("click", function() {
         var url3 = baseurl + "registraratencion",
             dni = $("#dni").val(),
@@ -178,26 +177,6 @@ $(document).ready(function() {
             }      
     });
 
-    url4 = baseurl + "contarconsecutivoturnos";
-      $.ajax({
-         url:url4,
-         method: "GET",
-         success: function (data) {
-            data = JSON.parse(data);
-            suma = parseInt(data.numero.numero) + 1;
-            $("#turno").val(suma);
-         },
-         error: function () {
-            $("body").overhang({
-              type: "error",
-              message: "Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
-            }); 
-          }
-      });
-
-     
-
-
      const reloadPage = () => {
         location.reload();
     }
@@ -205,69 +184,3 @@ $(document).ready(function() {
      
 });
 
-
-/*********************************** */
-/*********************************** */
-
-$('#'+baseurl + "administracion/reportegastos").keypress(function(e) {
-  e.defaultPrevented;
-  if (e.which == 13) {
-      return false;
-  }
-});
-$("#"+baseurl + "administracion/reportegastos").submit(function(event) {
-  event.preventDefault();
-  Suubtmit('#'+baseurl + "administracion/reportegastos");
-});
-/*********************************** */
-/*********************************** */
-
-$('#'+baseurl + "administracion/reportelaboratorio").keypress(function(e) {
-  e.defaultPrevented;
-  if (e.which == 13) {
-      return false;
-  }
-});
-$("#"+baseurl + "administracion/reportelaboratorio").submit(function(event) {
-  event.preventDefault();
-  Suubtmit('#'+baseurl + "administracion/reportelaboratorio");
-});
-/*********************************** */
-/*********************************** */
-
-$('#'+baseurl + "administracion/reportediario").keypress(function(e) {
-  e.defaultPrevented;
-  if (e.which == 13) {
-      return false;
-  }
-});
-$("#"+baseurl + "administracion/reportediario").submit(function(event) {
-  event.preventDefault();
-  Suubtmit('#'+baseurl + "administracion/reportediario");
-});
-/*********************************** */
-/*********************************** */
-
-function Suubtmit(_url__){
-  $.ajax({
-    url: _url__,
-    method: "POST",
-    data: [],
-    success: function () { 
-        $("body").overhang({
-            type: "success",
-            message: "Imprimiendo Reporte"
-        });
-        setTimeout(function() {
-            window.open(_baseurl__, "_blank", " width=500, height=400");
-            location.reload();
-        }, 700);
-    },
-    error: function () {
-       $("body").overhang({
-         type: "error",
-        message: "Alerta ! Tenemos un problema al conectar con la base de datos verifica tu red.",
-      }); 
-    }
-  })
-}

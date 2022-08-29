@@ -57,16 +57,16 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form">
+              <form role="form" method="post" validate id="FormLOG">
                 <div class="mb-3">
-                  <input type="email" class="form-control" id="correo" value="" placeholder="Usuario">
+                  <input type="text" required class="form-control" id="correo" value=""  placeholder="Usuario">
                 </div>
                 <div class="mb-3">
-                  <input type="password" id="password" value="" class="form-control" placeholder="Contraseña">
+                  <input type="password" id="password" value="" class="form-control" required placeholder="Contraseña">
                 </div>
                 
                 <div class="text-center">
-                  <button type="button" class="btn color-cyan text-white w-100 my-4 mb-2" id="login">Ingresar</button>
+                  <button type="submit" class="btn color-cyan text-white w-100 my-4 mb-2" id="login">Ingresar</button>
                 </div>
                 <p class="text-sm mt-3 mb-0">No tiene usuario y contraseña? <a href="javascript:;" class="text-dark font-weight-bolder">Solicitar</a></p>
               </form>
